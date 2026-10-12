@@ -11,16 +11,16 @@ O projeto combina finanças comportamentais, psicologia da decisão e ferramenta
 ## Estrutura atual
 
 - `index.html` — página inicial e acesso aos módulos;
-- `manual.html` — manual com 16 artigos e acompanhamento local de leitura;
+- `manual.html` — manual com 17 artigos e acompanhamento local de leitura;
 - `trilha.html` — trilha prática de 14 sessões, com foco em revisão, replay e simulação;
 - `ferramentas.html` — exercícios interativos armazenados localmente no navegador;
-- `referencias.html` — 22 referências bibliográficas comentadas;
+- `referencias.html` — 24 referências bibliográficas comentadas;
 - `assets/styles.css` — identidade visual, responsividade e impressão;
 - `assets/app.js` — tema, busca, progresso, persistência e ferramentas interativas.
 
 ## Temas do manual
 
-O conteúdo aborda aversão à perda, efeito disposição, pensamentos automáticos, ACT/desfusão, pré-compromisso, planos Se–Então, revenge trade, treino gradual, viés de resultado, vergonha e identidade, pensamento contrafactual, sunk cost, perfeccionismo/medo de fracasso, intolerância à incerteza, FOMO pós-stop e autocompaixão disciplinada.
+O conteúdo aborda aversão à perda, efeito disposição, pensamentos automáticos, ACT/desfusão, pré-compromisso, planos Se–Então, revenge trade, treino gradual, viés de resultado, vergonha e identidade, pensamento contrafactual, sunk cost, perfeccionismo/medo de fracasso, intolerância à incerteza, FOMO pós-stop, autocompaixão disciplinada e a crença de que é necessário “recuperar” perdas anteriores.
 
 ## Como visualizar
 
