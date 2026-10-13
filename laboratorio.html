@@ -1,0 +1,75 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Laboratório comportamental para revisar dias de fúria, vieses e contexto de trading."><title>Laboratório · Ressignificar o Estopar</title><link rel="stylesheet" href="assets/styles.css"></head><body>
+<header class="topbar"><div class="wrap nav"><a class="brand" href="index.html">Ressignificar o Estopar</a><nav class="navlinks"><a href="manual.html">Manual</a><a href="trilha.html">Trilha</a><a href="ferramentas.html">Ferramentas</a><a href="laboratorio.html">Laboratório</a><a href="referencias.html">Referências</a></nav><button class="icon-btn" data-theme-toggle>◐</button><button class="icon-btn" data-menu>☰</button></div></header>
+<main class="section"><div class="wrap"><div class="eyebrow">Prática avançada</div><h1 style="font-size:clamp(2.4rem,5vw,4.7rem)">Laboratório Comportamental</h1><p class="lead">Ferramentas para investigar o que você fez, reconstruir o que deveria ter feito e criar interrupções objetivas antes que um viés ou emoção vire uma sequência de decisões.</p>
+<div class="notice warning"><strong>Escopo:</strong> estas ferramentas organizam autorrelato. Elas não diagnosticam transtornos, não determinam se uma operação é financeiramente correta e não substituem regras de risco. Os dados ficam apenas no navegador.</div>
+
+<section class="tool" data-save-fields="re-autopsy"><div class="number">01 · PASSADO</div><h2>Autópsia comportamental de uma sessão</h2><p>Reconstrua o episódio em ordem temporal. Procure o primeiro desvio, não apenas a maior perda.</p>
+<label>Estado antes do pregão</label><textarea name="pre_state" placeholder="Sono, pressa, conflito, ansiedade, euforia, pressão financeira…"></textarea>
+<label>Primeiro evento que mudou meu estado</label><textarea name="first_trigger"></textarea>
+<label>Primeira regra violada</label><textarea name="first_rule"></textarea>
+<label>O que eu disse para mim mesmo antes de violá-la?</label><textarea name="first_dialogue"></textarea>
+<label>O que aconteceu depois?</label><textarea name="escalation"></textarea>
+<label>Qual era o primeiro ponto realista em que eu poderia ter interrompido a cadeia?</label><textarea name="interrupt_point"></textarea>
+</section>
+
+<section class="tool" data-save-fields="re-chain"><div class="number">02 · CADEIA</div><h2>Gatilho → diálogo → emoção → ação</h2>
+<div class="lab-flow"><div><label>Gatilho</label><textarea name="chain_trigger"></textarea></div><div><label>Frase automática</label><textarea name="chain_thought"></textarea></div><div><label>Emoção</label><textarea name="chain_emotion"></textarea></div><div><label>Impulso</label><textarea name="chain_urge"></textarea></div><div><label>Ação</label><textarea name="chain_action"></textarea></div><div><label>Consequência</label><textarea name="chain_result"></textarea></div></div>
+<label>Resposta alternativa que quero treinar</label><textarea name="chain_alt"></textarea></section>
+
+<section class="tool"><div class="number">03 · DIA DE FÚRIA</div><h2>Checklist de escalada</h2><p>Marque a intensidade observada. O resultado indica carga comportamental autorrelatada, não um diagnóstico.</p>
+<div class="check-grid rage-grid">
+<div><label>Urgência de recuperar</label><select data-rage-item><option value="">—</option><option value="0">Não</option><option value="1">Moderada</option><option value="2">Forte</option></select></div>
+<div><label>Raiva do mercado / de si</label><select data-rage-item><option value="">—</option><option value="0">Não</option><option value="1">Moderada</option><option value="2">Forte</option></select></div>
+<div><label>Aumento de lote</label><select data-rage-item><option value="">—</option><option value="0">Não</option><option value="1">Cogitei</option><option value="2">Fiz</option></select></div>
+<div><label>Reentrada sem setup novo</label><select data-rage-item><option value="">—</option><option value="0">Não</option><option value="1">Cogitei</option><option value="2">Fiz</option></select></div>
+<div><label>Stop afastado / removido</label><select data-rage-item><option value="">—</option><option value="0">Não</option><option value="1">Cogitei</option><option value="2">Fiz</option></select></div>
+<div><label>Alonguei horário por estar negativo</label><select data-rage-item><option value="">—</option><option value="0">Não</option><option value="1">Cogitei</option><option value="2">Fiz</option></select></div>
+<div><label>Parei de ler contexto</label><select data-rage-item><option value="">—</option><option value="0">Não</option><option value="1">Parcialmente</option><option value="2">Sim</option></select></div>
+<div><label>P&amp;L dominou minha atenção</label><select data-rage-item><option value="">—</option><option value="0">Não</option><option value="1">Moderado</option><option value="2">Forte</option></select></div>
+</div><div class="toolbar"><button class="btn" data-rage-score>Analisar checklist</button></div><div class="output" data-rage-output>Preencha todos os itens.</div></section>
+
+<section class="tool" data-save-fields="re-replay"><div class="number">04 · REPLAY CORRETIVO</div><h2>Reencenar fazendo certo</h2><p>Use replay/simulação. Não altere a resposta correta usando informação que só ficou disponível depois.</p>
+<label>Cena crítica</label><textarea name="replay_scene" placeholder="Horário, contexto, posição e estado emocional."></textarea>
+<label>O que fiz originalmente</label><textarea name="replay_original"></textarea>
+<label>Qual regra já existia naquele momento?</label><textarea name="replay_rule"></textarea>
+<label>O que devo executar no replay</label><textarea name="replay_correct"></textarea>
+<label>Plano Se–Então derivado</label><textarea name="replay_ifthen" placeholder="Se eu perceber X, então farei Y."></textarea>
+<div class="notice success"><strong>Repetição sugerida:</strong> repita a cena até conseguir narrar o gatilho e executar a resposta prevista sem usar o resultado futuro como pista. Isso é prática deliberada; não há número mágico de repetições.</div></section>
+
+<section class="tool"><div class="number">05 · ASSIMETRIA</div><h2>Detector educativo de “ganhos curtos, perdas longas”</h2><p>Insira estatísticas de uma amostra do seu histórico. A ferramenta sinaliza assimetrias; ela não prova efeito disposição nem considera a lógica específica da sua estratégia.</p>
+<div class="check-grid">
+<div><label>Duração média dos trades vencedores (min)</label><input type="number" min="0" step="0.1" data-disposition-win-time></div>
+<div><label>Duração média dos trades perdedores (min)</label><input type="number" min="0" step="0.1" data-disposition-loss-time></div>
+<div><label>Ganho médio por vencedor (R)</label><input type="number" min="0" step="0.01" data-disposition-win-r></div>
+<div><label>Perda média por perdedor (R, valor positivo)</label><input type="number" min="0" step="0.01" data-disposition-loss-r></div>
+</div><div class="toolbar"><button class="btn" data-disposition-analyze>Analisar assimetria</button></div><div class="output" data-disposition-output>Insira os quatro valores.</div></section>
+
+<section class="tool"><div class="number">06 · RESET DE CONTEXTO</div><h2>Leitura de contexto periódica</h2><p>O padrão é 15 minutos, mas o intervalo é configurável. Ele não possui validação científica específica; ajuste ao timeframe e método.</p>
+<div class="timer-panel"><div><label>Intervalo (minutos)</label><input type="number" min="1" max="240" value="15" data-context-minutes></div><div class="timer-clock" data-context-clock>15:00</div></div>
+<div class="toolbar"><button class="btn" data-context-start>Iniciar / reiniciar</button><button class="btn secondary" data-context-stop>Pausar</button></div>
+<div data-save-fields="re-context-current">
+<label>O que o preço está fazendo agora?</label><textarea name="ctx_now"></textarea>
+<label>O que mudou desde a última leitura?</label><textarea name="ctx_changed"></textarea>
+<label>Evidência a favor da minha tese</label><textarea name="ctx_for"></textarea>
+<label>Evidência contra minha tese</label><textarea name="ctx_against"></textarea>
+<label>Se eu estivesse zerado, qual cenário escreveria agora?</label><textarea name="ctx_flat"></textarea>
+</div>
+<div class="toolbar"><button class="btn" data-context-save>Salvar snapshot</button><button class="btn secondary" data-context-clear>Limpar histórico</button></div>
+<div class="snapshot-list" data-context-history></div></section>
+
+<section class="tool" data-save-fields="re-fury-review"><div class="number">07 · PÓS-SESSÃO</div><h2>Checklist final de um dia de fúria</h2>
+<ol>
+<li>Qual foi o primeiro gatilho identificável?</li>
+<li>Qual foi a primeira frase mental que mudou minha forma de operar?</li>
+<li>Qual foi a primeira violação objetiva do plano?</li>
+<li>Que emoção eu tentei regular através de uma operação?</li>
+<li>Em que momento parei de atualizar o contexto?</li>
+<li>O P&amp;L virou o objetivo principal?</li>
+<li>Eu aumentei risco, frequência ou duração da sessão?</li>
+<li>Qual regra teria interrompido a cadeia mais cedo?</li>
+<li>Qual cena devo repetir no replay corretivo?</li>
+<li>Qual plano Se–Então levo para a próxima sessão?</li>
+</ol>
+<label>Minha síntese em até cinco linhas</label><textarea name="fury_summary"></textarea></section>
+
+</div></main><footer><div class="wrap">Leia também os artigos <a href="manual.html#a24">24–30 do manual</a>.</div></footer><script src="assets/app.js"></script></body></html>
