@@ -11,16 +11,17 @@ O projeto combina finanças comportamentais, psicologia da decisão e ferramenta
 ## Estrutura atual
 
 - `index.html` — página inicial e acesso aos módulos;
-- `manual.html` — manual com 23 artigos e acompanhamento local de leitura;
+- `manual.html` — manual com 30 artigos e acompanhamento local de leitura;
 - `trilha.html` — trilha prática de 14 sessões, com foco em revisão, replay e simulação;
 - `ferramentas.html` — exercícios interativos armazenados localmente no navegador;
-- `referencias.html` — 31 referências bibliográficas comentadas;
+- `laboratorio.html` — laboratório comportamental com autópsia de sessões, cadeia gatilho→diálogo→ação, checklist de dia de fúria, replay corretivo, detector educativo de assimetria ganho/perda e reset periódico de contexto;
+- `referencias.html` — 38 referências bibliográficas comentadas;
 - `assets/styles.css` — identidade visual, responsividade e impressão;
 - `assets/app.js` — tema, busca, progresso, persistência e ferramentas interativas.
 
 ## Temas do manual
 
-O conteúdo aborda aversão à perda, efeito disposição, pensamentos automáticos, ACT/desfusão, pré-compromisso, planos Se–Então, revenge trade, treino gradual, viés de resultado, vergonha e identidade, pensamento contrafactual, sunk cost, perfeccionismo/medo de fracasso, intolerância à incerteza, FOMO pós-stop, autocompaixão disciplinada, a crença de que é necessário “recuperar” perdas anteriores, emoções incidentais, procrastinação da disciplina, sobreconfiança, P&L como placar emocional, valores operacionais e responsabilidade sem vergonha.
+O conteúdo aborda aversão à perda, efeito disposição, pensamentos automáticos, ACT/desfusão, pré-compromisso, planos Se–Então, revenge trade, treino gradual, viés de resultado, vergonha e identidade, pensamento contrafactual, sunk cost, perfeccionismo/medo de fracasso, intolerância à incerteza, FOMO pós-stop, autocompaixão disciplinada, a crença de que é necessário “recuperar” perdas anteriores, emoções incidentais, procrastinação da disciplina, sobreconfiança, P&L como placar emocional, valores operacionais e responsabilidade sem vergonha, anatomia do dia de fúria, diálogos internos, efeito disposição em perspectiva psicológica e neuroeconômica, gerenciamento versus repressão emocional, debiasing, reset de contexto e replay corretivo.
 
 ## Como visualizar
 
