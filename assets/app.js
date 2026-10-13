@@ -94,5 +94,57 @@
     out.innerHTML=`<span class="traffic ${klass}">${label}</span> · ${msg}<br><span class="small">Este semáforo é uma ferramenta educativa de autorreflexão, não um teste psicológico ou diagnóstico.</span>`;
   });
 
+
+  const rageBtn=document.querySelector("[data-rage-score]");
+  if(rageBtn) rageBtn.addEventListener("click",()=>{
+    const fields=[...document.querySelectorAll("[data-rage-item]")],out=document.querySelector("[data-rage-output]");
+    if(fields.some(f=>f.value==="")){out.textContent="Preencha todos os itens.";return}
+    const score=fields.reduce((s,f)=>s+Number(f.value),0);
+    let label,msg;
+    if(score<=3){label="BAIXA ESCALADA";msg="Poucos sinais foram marcados. Revise mesmo assim o primeiro gatilho e confirme se as regras permaneceram intactas."}
+    else if(score<=8){label="ESCALADA RELEVANTE";msg="Há vários sinais de mudança de comportamento. Identifique a primeira violação e construa um ponto de interrupção antes dela."}
+    else {label="ESCALADA ALTA";msg="O autorrelato mostra uma cadeia ampla de perda de processo. O foco da revisão deve ser interromper cedo a sequência, não encontrar uma justificativa para cada trade."}
+    out.textContent=label+" — "+msg+"\nPontuação: "+score+"/16. Ferramenta educativa, não teste psicológico.";
+  });
+
+  const dispBtn=document.querySelector("[data-disposition-analyze]");
+  if(dispBtn) dispBtn.addEventListener("click",()=>{
+    const wt=Number(document.querySelector("[data-disposition-win-time]").value),
+          lt=Number(document.querySelector("[data-disposition-loss-time]").value),
+          wr=Number(document.querySelector("[data-disposition-win-r]").value),
+          lr=Number(document.querySelector("[data-disposition-loss-r]").value),
+          out=document.querySelector("[data-disposition-output]");
+    if(!(wt>0&&lt>0&&wr>0&&lr>0)){out.textContent="Preencha todos os valores com números maiores que zero.";return}
+    const timeRatio=lt/wt, payoff=wr/lr;
+    const flags=[];
+    if(timeRatio>=1.5) flags.push("perdedores permanecem abertos muito mais tempo que vencedores");
+    if(payoff<1) flags.push("o ganho médio é menor que a perda média");
+    let msg=flags.length?"Amostra com assimetrias que merecem investigação: "+flags.join("; ")+".":"Nenhuma das duas assimetrias simples usadas por esta ferramenta apareceu de forma forte.";
+    out.textContent=`Razão de duração (perdedor/vencedor): ${timeRatio.toFixed(2)}x.\nPayoff médio (ganho/perda): ${payoff.toFixed(2)}.\n${msg}\nIsso não diagnostica efeito disposição: compare com as regras e a expectativa matemática da sua estratégia.`;
+  });
+
+  const ctxMin=document.querySelector("[data-context-minutes]"),
+        ctxClock=document.querySelector("[data-context-clock]"),
+        ctxStart=document.querySelector("[data-context-start]"),
+        ctxStop=document.querySelector("[data-context-stop]");
+  if(ctxMin&&ctxClock&&ctxStart&&ctxStop){
+    let timer=null,remaining=Math.max(1,Number(ctxMin.value)||15)*60;
+    const paint=()=>{const m=Math.floor(remaining/60),s=remaining%60;ctxClock.textContent=String(m).padStart(2,"0")+":"+String(s).padStart(2,"0")};
+    const reset=()=>{remaining=Math.max(1,Number(ctxMin.value)||15)*60;paint()};
+    ctxMin.addEventListener("change",reset);
+    ctxStart.addEventListener("click",()=>{if(timer)clearInterval(timer);reset();timer=setInterval(()=>{remaining--;paint();if(remaining<=0){clearInterval(timer);timer=null;ctxClock.textContent="RESET";}},1000)});
+    ctxStop.addEventListener("click",()=>{if(timer)clearInterval(timer);timer=null});
+    paint();
+  }
+
+  const ctxSave=document.querySelector("[data-context-save]"),ctxHist=document.querySelector("[data-context-history]"),ctxClear=document.querySelector("[data-context-clear]");
+  if(ctxSave&&ctxHist&&ctxClear){
+    const key="re-context-history";
+    const render=()=>{let arr=[];try{arr=JSON.parse(localStorage.getItem(key)||"[]")}catch{}ctxHist.innerHTML=arr.length?arr.map((x,i)=>`<article class="snapshot"><strong>${x.at}</strong><p><b>Agora:</b> ${esc(x.now)}</p><p><b>Mudou:</b> ${esc(x.changed)}</p><p><b>A favor:</b> ${esc(x.favor)}</p><p><b>Contra:</b> ${esc(x.against)}</p><p><b>Zerado:</b> ${esc(x.flat)}</p></article>`).join(""):'<p class="small">Nenhum snapshot salvo.</p>'};
+    const esc=s=>String(s||"—").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+    ctxSave.addEventListener("click",()=>{let arr=[];try{arr=JSON.parse(localStorage.getItem(key)||"[]")}catch{}const v=n=>document.querySelector(`[name=${n}]`)?.value.trim()||"";arr.unshift({at:new Date().toLocaleString("pt-BR"),now:v("ctx_now"),changed:v("ctx_changed"),favor:v("ctx_for"),against:v("ctx_against"),flat:v("ctx_flat")});arr=arr.slice(0,50);localStorage.setItem(key,JSON.stringify(arr));render()});
+    ctxClear.addEventListener("click",()=>{localStorage.removeItem(key);render()});render();
+  }
+
   document.querySelectorAll("[data-print]").forEach(b=>b.addEventListener("click",()=>print()));
 })();
