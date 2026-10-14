@@ -11,17 +11,25 @@ O projeto combina finanças comportamentais, psicologia da decisão e ferramenta
 ## Estrutura atual
 
 - `index.html` — página inicial e acesso aos módulos;
+- `curso.html` — curso interativo de 8 módulos para aprender a definir, executar e revisar stops, com exercícios, simulações, quizzes e avaliação final;
 - `manual.html` — manual com 30 artigos e acompanhamento local de leitura;
 - `trilha.html` — trilha prática de 14 sessões, com foco em revisão, replay e simulação;
 - `ferramentas.html` — exercícios interativos armazenados localmente no navegador;
 - `laboratorio.html` — laboratório comportamental com autópsia de sessões, cadeia gatilho→diálogo→ação, checklist de dia de fúria, replay corretivo, detector educativo de assimetria ganho/perda e reset periódico de contexto;
-- `referencias.html` — 38 referências bibliográficas comentadas;
+- `referencias.html` — 41 referências bibliográficas comentadas;
 - `assets/styles.css` — identidade visual, responsividade e impressão;
-- `assets/app.js` — tema, busca, progresso, persistência e ferramentas interativas.
+- `assets/app.js` — tema, busca, progresso, persistência e ferramentas interativas;
+- `assets/course.js` — motor de quizzes, simulações, progresso do curso e exercício didático de dimensionamento.
 
 ## Temas do manual
 
 O conteúdo aborda aversão à perda, efeito disposição, pensamentos automáticos, ACT/desfusão, pré-compromisso, planos Se–Então, revenge trade, treino gradual, viés de resultado, vergonha e identidade, pensamento contrafactual, sunk cost, perfeccionismo/medo de fracasso, intolerância à incerteza, FOMO pós-stop, autocompaixão disciplinada, a crença de que é necessário “recuperar” perdas anteriores, emoções incidentais, procrastinação da disciplina, sobreconfiança, P&L como placar emocional, valores operacionais e responsabilidade sem vergonha, anatomia do dia de fúria, diálogos internos, efeito disposição em perspectiva psicológica e neuroeconômica, gerenciamento versus repressão emocional, debiasing, reset de contexto e replay corretivo.
+
+## Curso Aprender a Estopar
+
+O curso possui oito módulos: significado profissional do stop; invalidação e dimensionamento; execução sem negociação emocional; efeito disposição; pós-stop e recuperação; dia de fúria; vieses/reset de contexto; e replay corretivo com avaliação final.
+
+A progressão é baseada em domínio de processo. O aluno recebe feedback imediato, pode repetir quizzes e simulações e tem seu progresso salvo localmente no navegador. O curso não usa rentabilidade simulada como critério de aprovação.
 
 ## Como visualizar
 
