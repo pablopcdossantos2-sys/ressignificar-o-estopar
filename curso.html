@@ -1,6 +1,6 @@
 <!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Curso prático para aprender a definir, executar e revisar stops no trading."><title>Curso · Aprender a Estopar</title><link rel="stylesheet" href="assets/styles.css"></head><body>
 <div class="progress" aria-hidden="true"><span></span></div>
-<header class="topbar"><div class="wrap nav"><a class="brand" href="index.html">Ressignificar o Estopar</a><nav class="navlinks"><a href="curso.html">Curso</a><a href="manual.html">Manual</a><a href="trilha.html">Trilha</a><a href="ferramentas.html">Ferramentas</a><a href="laboratorio.html">Laboratório</a><a href="referencias.html">Referências</a></nav><button class="icon-btn" data-theme-toggle>◐</button><button class="icon-btn" data-menu>☰</button></div></header>
+<header class="topbar"><div class="wrap nav"><a class="brand" href="index.html">Ressignificar o Estopar</a><nav class="navlinks"><a href="curso.html">Curso</a><a href="simulador.html">Simulador</a><a href="manual.html">Manual</a><a href="trilha.html">Trilha</a><a href="ferramentas.html">Ferramentas</a><a href="laboratorio.html">Laboratório</a><a href="referencias.html">Referências</a></nav><button class="icon-btn" data-theme-toggle>◐</button><button class="icon-btn" data-menu>☰</button></div></header>
 
 <main class="section"><div class="wrap">
 <div class="eyebrow">Curso prático · 8 módulos</div><h1 style="font-size:clamp(2.4rem,5vw,4.8rem)">Aprender a Estopar</h1>
@@ -48,7 +48,7 @@
 <div class="course-module-head"><div><span class="number">MÓDULO 2</span><h2>Definir o stop antes da entrada</h2></div><span class="module-status" data-module-status="m2">Não concluído</span></div>
 <p>O stop técnico deve nascer da lógica da operação. Primeiro se identifica o ponto ou condição em que a hipótese deixa de justificar permanência; depois o tamanho da posição é ajustado ao risco aceitável. Fazer o contrário — escolher o lote e então apertar o stop para “caber” — mistura análise técnica com necessidade financeira.</p>
 
-<h3>Simulação 1 · Onde está a invalidação?</h3>
+<div class="historical-practice"><h3>Prática histórica · Invalidação em gráfico real</h3><iframe src="simulador.html?embed=1&challenge=stop" loading="lazy" title="Simulador histórico de stop"></iframe></div>\n<h3>Simulação 1 · Onde está a invalidação?</h3>
 <div class="sim-card" data-sim>
 <p><strong>Cenário fictício:</strong> você compra um rompimento porque a tese depende de o preço permanecer acima de uma zona recém-rompida. Seu plano define que um fechamento novamente abaixo dessa zona invalida a leitura.</p>
 <div class="sim-options">
@@ -78,7 +78,7 @@
 <div class="course-module-head"><div><span class="number">MÓDULO 3</span><h2>Executar sem negociar com a perda</h2></div><span class="module-status" data-module-status="m3">Não concluído</span></div>
 <p>O momento próximo ao stop tende a produzir justificativas. O treino é distinguir <strong>alteração prevista pelo método</strong> de <strong>alteração criada para evitar realizar a perda</strong>.</p>
 
-<h3>Simulação 2 · “Só mais um pouco”</h3>
+<div class="historical-practice"><h3>Prática histórica · Executar sem ampliar risco</h3><iframe src="simulador.html?embed=1&challenge=stop" loading="lazy" title="Replay histórico de execução do stop"></iframe></div>\n<h3>Simulação 2 · “Só mais um pouco”</h3>
 <div class="sim-card" data-sim><p>A posição está a poucos ticks do stop. Surge o pensamento: <strong>“está muito perto; vou afastar só um pouco para não sair no pior ponto.”</strong> O plano não prevê ampliar risco.</p><div class="sim-options">
 <button data-sim-choice="correct" data-feedback="Correto. O motivo da alteração é evitar a realização da perda, não nova informação prevista no plano.">Manter a regra original.</button>
 <button data-sim-choice="wrong" data-feedback="Afastar o stop para evitar a dor de ser estopado aumenta o risco justamente quando a hipótese está piorando.">Afastar alguns ticks e observar.</button>
@@ -103,7 +103,7 @@
 <div class="course-module-head"><div><span class="number">MÓDULO 4</span><h2>Ganhos curtos, perdas longas</h2></div><span class="module-status" data-module-status="m4">Não concluído</span></div>
 <p>O efeito disposição descreve uma tendência estudada: realizar ganhos cedo e carregar perdas. O objetivo do módulo não é obrigar o trader a “deixar lucro correr” em qualquer estratégia, mas impedir que <strong>estar positivo</strong> e <strong>estar negativo</strong> substituam os critérios do método.</p>
 
-<h3>Simulação 4 · Duas posições, duas tentações</h3>
+<div class="historical-practice"><h3>Prática histórica · Efeito disposição</h3><iframe src="simulador.html?embed=1&challenge=disposition" loading="lazy" title="Replay histórico para efeito disposição"></iframe></div>\n<h3>Simulação 4 · Duas posições, duas tentações</h3>
 <div class="scenario-pair">
 <div class="sim-card" data-sim><p><strong>A:</strong> a posição está +0,3R. O alvo/saída técnica ainda não ocorreu. Você sente medo de “devolver”.</p><div class="sim-options"><button data-sim-choice="correct" data-feedback="Correto se o plano não prevê saída aqui: lucro flutuante sozinho não precisa virar critério.">Seguir a regra de saída prevista.</button><button data-sim-choice="wrong" data-feedback="Pode ser coerente em algumas estratégias, mas neste cenário a única razão é proteger a sensação de ganho, não o método.">Zerar apenas porque ficou positivo.</button></div><div class="sim-feedback" data-sim-feedback></div></div>
 <div class="sim-card" data-sim><p><strong>B:</strong> a posição alcança a invalidação. Você pensa “já caiu demais; agora deve voltar”.</p><div class="sim-options"><button data-sim-choice="correct" data-feedback="Correto. Estar negativo não é motivo para receber tempo ilimitado.">Executar o stop planejado.</button><button data-sim-choice="wrong" data-feedback="Isso transforma esperança/reversão à média em substituto da regra de invalidação.">Dar mais espaço porque a perda já está grande.</button></div><div class="sim-feedback" data-sim-feedback></div></div>
@@ -124,7 +124,7 @@
 <div class="course-module-head"><div><span class="number">MÓDULO 5</span><h2>Depois do stop: não transformar perda em missão</h2></div><span class="module-status" data-module-status="m5">Não concluído</span></div>
 <p>Uma perda realizada pertence ao histórico. A próxima operação não tem obrigação de compensá-la. O risco central aqui é mudar a função do próximo trade: de executar uma oportunidade para regular raiva, vergonha ou urgência de voltar ao zero.</p>
 
-<h3>Simulação 5 · O trade da “recuperação”</h3>
+<div class="historical-practice"><h3>Prática histórica · Pós-stop sem recuperação</h3><iframe src="simulador.html?embed=1&challenge=recovery" loading="lazy" title="Replay histórico pós-stop"></iframe></div>\n<h3>Simulação 5 · O trade da “recuperação”</h3>
 <div class="sim-card" data-sim><p>Você tomou -1R. Cinco minutos depois aparece uma configuração mediana que normalmente você não operaria. O pensamento é: <strong>“se eu pegar só metade do movimento, recupero.”</strong></p><div class="sim-options">
 <button data-sim-choice="wrong" data-feedback="A perda anterior está alterando o critério de entrada. Isso transforma a nova posição em instrumento de regulação emocional.">Entrar com tamanho normal.</button>
 <button data-sim-choice="wrong" data-feedback="Aumentar tamanho para acelerar o retorno ao zero amplia justamente o mecanismo de recuperação.">Entrar maior para precisar de menos movimento.</button>
@@ -146,7 +146,7 @@
 <div class="course-module-head"><div><span class="number">MÓDULO 6</span><h2>Dia de fúria: detectar a escalada antes do colapso</h2></div><span class="module-status" data-module-status="m6">Não concluído</span></div>
 <p>Um dia de fúria costuma ser uma cadeia. O objetivo é aprender a reconhecer o <strong>primeiro ponto de ruptura</strong> e interromper antes que novas decisões sejam tomadas para resolver emoções.</p>
 
-<h3>Simulação 6 · Encontre o primeiro desvio</h3>
+<div class="historical-practice"><h3>Prática histórica · Interromper dia de fúria</h3><iframe src="simulador.html?embed=1&challenge=fury" loading="lazy" title="Replay histórico de dia de fúria"></iframe></div>\n<h3>Simulação 6 · Encontre o primeiro desvio</h3>
 <div class="fury-sequence">
 <div>09:35 · Stop dentro do plano.</div><div>09:36 · Pensamento: “não posso começar o dia assim”.</div><div>09:38 · Entrada antecipada sem confirmação.</div><div>09:42 · Novo stop.</div><div>09:43 · Lote aumentado.</div>
 </div>
@@ -168,7 +168,7 @@
 <div class="course-module-head"><div><span class="number">MÓDULO 7</span><h2>Vieses e reset de contexto</h2></div><span class="module-status" data-module-status="m7">Não concluído</span></div>
 <p>Uma tese pode começar razoável e tornar-se obsoleta. O objetivo do reset é obrigar a mente a procurar informação atual, inclusive contra a posição atual, antes que o compromisso com a narrativa antiga substitua a leitura do mercado.</p>
 
-<h3>Simulação 7 · Atualize ou defenda?</h3>
+<div class="historical-practice"><h3>Prática histórica · Reset de contexto</h3><iframe src="simulador.html?embed=1&challenge=context" loading="lazy" title="Replay histórico para reset de contexto"></iframe></div>\n<h3>Simulação 7 · Atualize ou defenda?</h3>
 <div class="context-steps">
 <div class="context-step"><strong>09:15:</strong> tendência de alta, preço acima da região de valor, sua hipótese é continuação.</div>
 <div class="context-step"><strong>09:30:</strong> falha no rompimento; preço retorna à região anterior.</div>
@@ -195,7 +195,7 @@
 <div class="course-module-head"><div><span class="number">MÓDULO 8</span><h2>Replay corretivo e domínio final</h2></div><span class="module-status" data-module-status="m8">Não concluído</span></div>
 <p>O replay não serve para descobrir, com o gráfico pronto, o trade perfeito. Ele serve para voltar ao instante crítico, limitar-se à informação disponível naquele momento e praticar a decisão coerente com o plano.</p>
 
-<h3>Simulação 8 · Replay sem hindsight</h3>
+<div class="historical-practice"><h3>Prática histórica · Replay corretivo</h3><iframe src="simulador.html?embed=1&challenge=free" loading="lazy" title="Replay histórico corretivo"></iframe></div>\n<h3>Simulação 8 · Replay sem hindsight</h3>
 <div class="sim-card" data-sim><p>No histórico, você sabe que após seu stop o mercado voltou e teria dado lucro. Ao refazer a cena, qual informação deve ser escondida/ignorada?</p><div class="sim-options"><button data-sim-choice="correct" data-feedback="Correto. O replay deve preservar a incerteza da decisão original.">Tudo o que aconteceu depois daquele instante.</button><button data-sim-choice="wrong" data-feedback="Usar o resultado futuro transforma replay em otimização retrospectiva, não treino de decisão.">Nada; devo usar o gráfico completo para escolher melhor.</button></div><div class="sim-feedback" data-sim-feedback></div></div>
 
 <div class="tool" data-save-fields="course-final-plan"><h3>Exercício · Meu protocolo final de stop</h3><label>1. Como defino invalidação?</label><textarea name="final_invalidation"></textarea><label>2. Como dimensiono a posição depois de definir o stop?</label><textarea name="final_size"></textarea><label>3. Quais alterações de stop são permitidas pelo meu método?</label><textarea name="final_changes"></textarea><label>4. Meu principal diálogo mental de risco</label><textarea name="final_dialogue"></textarea><label>5. Meu plano Se–Então</label><textarea name="final_ifthen"></textarea><label>6. Minha regra pós-stop</label><textarea name="final_post"></textarea><label>7. Meu gatilho de interrupção do dia de fúria</label><textarea name="final_fury"></textarea><label>8. Como farei replay corretivo?</label><textarea name="final_replay"></textarea></div>
