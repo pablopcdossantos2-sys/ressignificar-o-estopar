@@ -1,0 +1,37 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Como preparar dados históricos de 2 e 5 minutos para o simulador de stops."><title>Dados Históricos · Ressignificar o Estopar</title><link rel="stylesheet" href="assets/styles.css"></head><body>
+<header class="topbar"><div class="wrap nav"><a class="brand" href="index.html">Ressignificar o Estopar</a><nav class="navlinks"><a href="curso.html">Curso</a><a href="simulador.html">Simulador</a><a href="dados.html">Dados</a><a href="laboratorio.html">Laboratório</a><a href="manual.html">Manual</a></nav><button class="icon-btn" data-theme-toggle>◐</button><button class="icon-btn" data-menu>☰</button></div></header>
+<main class="section"><div class="wrap"><div class="eyebrow">Dados do replay</div><h1 style="font-size:clamp(2.4rem,5vw,4.7rem)">Como alimentar o simulador com candles históricos reais</h1>
+<p class="lead">O simulador aceita bases locais e funciona inteiramente no navegador. O objetivo é preservar o projeto gratuito, evitar dependência de APIs pagas e respeitar licenças de mercado.</p>
+
+<section class="article"><h2>Ativos previstos</h2><div class="grid">
+<div class="card wide"><h3>Brasil</h3><p><strong>WINFUT</strong> e <strong>WDOFUT</strong>, preferencialmente dados de 1 ou 2 minutos para permitir exercícios em 2 e 5 minutos.</p></div>
+<div class="card wide"><h3>Estados Unidos</h3><p><strong>NASDAQ</strong> e <strong>S&amp;P 500</strong>. Para treino de instrumentos negociáveis, você também pode importar séries de NQ/MNQ e ES/MES e classificá-las nas categorias correspondentes.</p></div>
+</div></section>
+
+<section class="article"><h2>Opção recomendada: exportar do TradingView</h2>
+<p>O TradingView permite baixar os dados atualmente carregados no gráfico em CSV. Portanto, escolha o símbolo, carregue o histórico desejado, selecione preferencialmente <strong>1 min ou 2 min</strong> e use a opção de baixar/exportar dados do gráfico. Depois importe o CSV em <a href="simulador.html">Simulador Histórico</a>.</p>
+<ol><li>Abra o Supergráfico do ativo.</li><li>Escolha 1m, 2m ou 5m.</li><li>Carregue/role para a esquerda até incluir o período desejado.</li><li>Use <strong>Baixar dados do gráfico…</strong>.</li><li>No simulador, escolha a categoria correta do ativo e importe o arquivo.</li></ol>
+<div class="notice"><strong>Por que 1 minuto é útil?</strong> Uma base de 1m pode ser agregada pelo nosso simulador para 2m e 5m. Uma base de 5m não pode ser convertida fielmente de volta para 2m.</div>
+<p class="small">Documentação: <a href="https://www.tradingview.com/support/solutions/43000537255-how-to-export-chart-data/">TradingView — How to export chart data</a> e <a href="https://www.tradingview.com/support/solutions/43000480679-historical-intraday-data-bars-and-limits-explained/">Historical intraday data limits</a>.</p>
+</section>
+
+<section class="article"><h2>Exportação do Profit / Nelogica</h2>
+<p>O parser também reconhece o formato típico exportado pelo Profit, inclusive arquivos separados por ponto e vírgula com campos como ativo, data, hora, abertura, máxima, mínima, fechamento e volume.</p>
+<p>A Nelogica informa disponibilidade de histórico intraday de WINFUT e WDOFUT desde maio de 2012 em seus serviços de bases históricas. A disponibilidade concreta dentro do Profit ou de uma contratação pode variar conforme produto/licença.</p>
+<p class="small">Referência: <a href="https://ajuda.nelogica.com.br/hc/pt-br/articles/11169188636443-Disponibilidade-de-Dados-Hist%C3%B3ricos-para-exporta%C3%A7%C3%A3o-em-CSV">Nelogica — Disponibilidade de Dados Históricos para exportação em CSV</a>.</p>
+</section>
+
+<section class="article"><h2>Por que não baixar automaticamente da B3?</h2>
+<p>O portal oficial da B3 possui dados históricos e boletins, mas a página de pesquisa por pregão declara que os dados são de propriedade da B3 e <strong>veda coleta automatizada</strong>. Além disso, os produtos DataWise intraday publicamente descritos possuem modelos de contratação e não fornecem, nessa página, uma base aberta de candles de 2 ou 5 minutos pronta para redistribuição.</p>
+<p>Por isso, este projeto não fará scraping automático da B3 nem copiará bases de terceiros sem licença explícita. O simulador trabalha com arquivos que o próprio usuário tem direito de utilizar.</p>
+<p class="small">Referências: <a href="https://www.b3.com.br/pt_br/market-data-e-indices/servicos-de-dados/market-data/historico/boletins-diarios/pesquisa-por-pregao/pesquisa-por-pregao/">B3 — Pesquisa por pregão</a> e <a href="https://www.b3.com.br/pt_br/market-data-e-indices/servicos-de-dados/datawise/dados-disponiveis/">B3 DataWise — Dados disponíveis</a>.</p>
+</section>
+
+<section class="article"><h2>Formatos reconhecidos</h2>
+<p>O importador tenta detectar automaticamente:</p>
+<ul><li><strong>CSV TradingView:</strong> colunas como <code>time, open, high, low, close, volume</code>.</li><li><strong>CSV Profit/Nelogica:</strong> colunas como <code>Data;Hora;Abertura;Máxima;Mínima;Fechamento;Volume</code>, incluindo decimal com vírgula.</li></ul>
+<div class="notice warning"><strong>Verifique o arquivo:</strong> horários, timezone, ajustes, contrato contínuo e regra de rollover podem alterar o significado da série. O simulador usa exatamente os candles importados; ele não corrige automaticamente continuidade de contratos futuros.</div>
+</section>
+
+<section class="article"><h2>Privacidade e armazenamento</h2><p>Os candles são armazenados no <strong>IndexedDB</strong> do navegador. Eles não são enviados para servidor algum pelo projeto. Limpar os dados do site/navegador pode remover as bases importadas.</p><div class="actions"><a class="btn" href="simulador.html">Abrir simulador</a><a class="btn secondary" href="curso.html">Voltar ao curso</a></div></section>
+</div></main><footer><div class="wrap">Dados históricos · uso educacional e conforme os direitos/licenças da fonte escolhida.</div></footer><script src="assets/app.js"></script></body></html>
