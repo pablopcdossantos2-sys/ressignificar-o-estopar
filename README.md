@@ -12,6 +12,8 @@ O projeto combina finanças comportamentais, psicologia da decisão e ferramenta
 
 - `index.html` — página inicial e acesso aos módulos;
 - `curso.html` — curso interativo de 8 módulos para aprender a definir, executar e revisar stops, com exercícios, simulações, quizzes e avaliação final;
+- `simulador.html` — replay histórico candlestick com futuro oculto, ordens simuladas, stop/alvo, P&L em pontos/R e suporte principal a 2m/5m;
+- `dados.html` — tutorial de obtenção/importação de históricos e limites de licenciamento;
 - `manual.html` — manual com 30 artigos e acompanhamento local de leitura;
 - `trilha.html` — trilha prática de 14 sessões, com foco em revisão, replay e simulação;
 - `ferramentas.html` — exercícios interativos armazenados localmente no navegador;
@@ -19,7 +21,8 @@ O projeto combina finanças comportamentais, psicologia da decisão e ferramenta
 - `referencias.html` — 41 referências bibliográficas comentadas;
 - `assets/styles.css` — identidade visual, responsividade e impressão;
 - `assets/app.js` — tema, busca, progresso, persistência e ferramentas interativas;
-- `assets/course.js` — motor de quizzes, simulações, progresso do curso e exercício didático de dimensionamento.
+- `assets/course.js` — motor de quizzes, simulações, progresso do curso e exercício didático de dimensionamento;
+- `assets/replay.js` — parser de CSV, IndexedDB, resampling, canvas candlestick, replay e motor de ordens.
 
 ## Temas do manual
 
@@ -30,6 +33,16 @@ O conteúdo aborda aversão à perda, efeito disposição, pensamentos automáti
 O curso possui oito módulos: significado profissional do stop; invalidação e dimensionamento; execução sem negociação emocional; efeito disposição; pós-stop e recuperação; dia de fúria; vieses/reset de contexto; e replay corretivo com avaliação final.
 
 A progressão é baseada em domínio de processo. O aluno recebe feedback imediato, pode repetir quizzes e simulações e tem seu progresso salvo localmente no navegador. O curso não usa rentabilidade simulada como critério de aprovação.
+
+## Replay histórico
+
+O simulador trabalha com candles reais importados pelo usuário. Categorias suportadas: WINFUT, WDOFUT, NASDAQ/NQ/MNQ e S&P 500/ES/MES. Os timeframes principais são 2 e 5 minutos. Bases de 1 minuto podem ser agregadas para ambos; uma base de 5 minutos não pode reconstruir 2 minutos.
+
+Formatos de importação previstos:
+- CSV do TradingView com colunas OHLC;
+- CSV do Profit/Nelogica com data, hora, OHLC e volume.
+
+Os candles são guardados em IndexedDB e compartilhados entre os simuladores embutidos no curso. O repositório não redistribui bases intradiárias proprietárias sem autorização explícita.
 
 ## Como visualizar
 
