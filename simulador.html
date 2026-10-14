@@ -22,7 +22,7 @@
 <option value="recovery">Não operar para recuperar</option>
 <option value="disposition">Evitar ganhos curtos/perdas longas</option>
 <option value="context">Atualizar contexto</option>
-<option value="fury">Interromper escalada</option>
+<option value="fury">Interromper escalada</option><option value="present">Aqui e agora: fato x fantasia</option>
 </select>
 <div class="toolbar"><button class="btn" data-replay-load>Carregar sessão</button></div><div class="small" data-replay-session-status></div></div>
 
@@ -41,17 +41,30 @@
 <div class="chart-toolbar">
 <button class="btn secondary small-btn" data-replay-back>← Reiniciar</button>
 <button class="btn secondary small-btn" data-replay-step>+1 candle</button>
-<button class="btn secondary small-btn" data-replay-play>▶ Reproduzir</button>
+<button class="btn secondary small-btn" data-replay-play>▶ Reproduzir</button><button class="btn secondary small-btn" data-presence-open>A.G.O.R.A.</button>
 <label>Velocidade <select data-replay-speed><option value="1200">1×</option><option value="650" selected>2×</option><option value="300">4×</option><option value="120">8×</option></select></label>
 <span class="small" data-replay-clock>—</span>
 </div>
 <div class="market-canvas-wrap"><canvas data-replay-canvas width="1100" height="600" aria-label="Gráfico candlestick histórico"></canvas><div class="chart-tooltip" data-replay-tooltip hidden></div></div>
 <div class="replay-stats">
-<div><span>Posição</span><strong data-stat-position>—</strong></div><div><span>P&amp;L atual</span><strong data-stat-pnl>0</strong></div><div><span>Trades</span><strong data-stat-trades>0</strong></div><div><span>Stops executados</span><strong data-stat-stops>0</strong></div><div><span>Ampliações de risco</span><strong data-stat-expansions>0</strong></div>
+<div><span>Posição</span><strong data-stat-position>—</strong></div><div><span>P&amp;L atual</span><strong data-stat-pnl>0</strong></div><div><span>Trades</span><strong data-stat-trades>0</strong></div><div><span>Stops executados</span><strong data-stat-stops>0</strong></div><div><span>Ampliações de risco</span><strong data-stat-expansions>0</strong></div><div><span>Checkpoints A.G.O.R.A.</span><strong data-stat-presence>0</strong></div>
 </div>
 <div class="replay-log" data-replay-log><div class="small">As decisões da sessão aparecerão aqui.</div></div>
 </div>
 </section>
+<dialog class="presence-dialog" data-presence-dialog>
+<form method="dialog" class="presence-card">
+<div class="number">CHECKPOINT A.G.O.R.A.</div><h2>Aqui e agora</h2>
+<p>Não tente prever por alguns instantes. Separe o que existe do que sua mente deseja que aconteça.</p>
+<label><strong>A · Fato observável agora</strong><textarea data-presence-fact placeholder="Descreva sem usar “vai”, “deve”, “quando” ou lucro futuro."></textarea></label>
+<label><strong>G · História/hipótese que minha mente está produzindo</strong><textarea data-presence-story placeholder="Ex.: vai voltar; é só um pullback; quando reverter recupero."></textarea></label>
+<label><strong>O · Nomeie como pensamento</strong><input data-presence-defusion placeholder="Ex.: estou percebendo o pensamento de que vai voltar."></label>
+<label><strong>R · Regra objetiva aplicável agora</strong><textarea data-presence-rule placeholder="Qual condição permite permanecer? Qual exige sair?"></textarea></label>
+<label><strong>A · Ação conforme o plano</strong><textarea data-presence-action placeholder="O que farei agora, sem usar lucro hipotético como argumento?"></textarea></label>
+<label class="presence-flat"><input type="checkbox" data-presence-flat> Se eu estivesse zerado e sem conhecer meu P&amp;L, minha leitura seria a mesma.</label>
+<div class="toolbar"><button type="button" class="btn" data-presence-save>Salvar checkpoint</button><button class="btn secondary" value="cancel">Cancelar</button></div>
+<div class="small" data-presence-message></div>
+</form></dialog>
 
 <section class="article" data-embed-hide><h2>Como o motor trata stop e alvo</h2><p>A entrada ocorre no fechamento do candle atualmente visível. Ao avançar, o motor usa máxima e mínima do próximo candle para verificar stop/alvo. Se stop e alvo forem tocados no mesmo candle e os dados não permitirem saber a ordem intrabar, o simulador marca a ocorrência como <strong>ambígua</strong> e, por prudência didática, considera o stop primeiro. Para estudo mais preciso de execução intrabar, importe dados em granularidade menor.</p><p>O resultado é expresso principalmente em <strong>pontos</strong> e em <strong>R</strong> com base na distância inicial do stop; isso evita misturar regras contratuais distintas entre WIN, WDO e mercados americanos.</p></section>
 </div></main><footer class="replay-full-header"><div class="wrap">Simulador educativo. Não envia ordens e não constitui recomendação financeira.</div></footer><script src="assets/app.js"></script><script src="assets/replay.js"></script></body></html>
