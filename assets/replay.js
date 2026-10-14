@@ -3,6 +3,7 @@
   if(!canvas)return;
   const ctx=canvas.getContext("2d");
   const q=new URLSearchParams(location.search);
+  const dataChannel=("BroadcastChannel" in window)?new BroadcastChannel("re-market-data"):null;
   if(q.get("embed")==="1"){document.body.classList.add("replay-embed");document.querySelectorAll("[data-embed-hide]").forEach(e=>e.remove())}
   const requested=q.get("challenge"); if(requested&&$("[data-replay-challenge]"))$("[data-replay-challenge]").value=requested;
 
@@ -84,10 +85,11 @@
   }
 
   els.imp.addEventListener("click",async()=>{
-    try{const f=els.file.files?.[0];if(!f)throw new Error("Selecione um CSV.");els.status.textContent="Lendo arquivo…";const parsed=parseCSV(await f.text());await dbPut({asset:els.asset.value,bars:parsed,importedAt:Date.now(),filename:f.name});els.status.textContent="Importação concluída.";await refreshDataset()}catch(e){els.status.textContent="Erro: "+e.message}
+    try{const f=els.file.files?.[0];if(!f)throw new Error("Selecione um CSV.");els.status.textContent="Lendo arquivo…";const parsed=parseCSV(await f.text());await dbPut({asset:els.asset.value,bars:parsed,importedAt:Date.now(),filename:f.name});if(dataChannel)dataChannel.postMessage({type:"dataset-updated",asset:els.asset.value});els.status.textContent="Importação concluída.";await refreshDataset()}catch(e){els.status.textContent="Erro: "+e.message}
   });
   els.del.addEventListener("click",async()=>{await dbDelete(els.asset.value);raw=[];bars=[];render();await refreshDataset()});
   els.asset.addEventListener("change",refreshDataset);
+  if(dataChannel)dataChannel.onmessage=e=>{if(e.data?.type==="dataset-updated"&&e.data.asset===els.asset.value)refreshDataset()};
 
   function loadSession(){
     if(!raw.length){els.session.textContent="Importe/carregue uma base primeiro.";return}
