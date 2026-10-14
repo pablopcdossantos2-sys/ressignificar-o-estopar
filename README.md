@@ -14,11 +14,11 @@ O projeto combina finanças comportamentais, psicologia da decisão e ferramenta
 - `curso.html` — curso interativo de 8 módulos para aprender a definir, executar e revisar stops, com exercícios, simulações, quizzes e avaliação final;
 - `simulador.html` — replay histórico candlestick com futuro oculto, ordens simuladas, stop/alvo, P&L em pontos/R e suporte principal a 2m/5m;
 - `dados.html` — tutorial de obtenção/importação de históricos e limites de licenciamento;
-- `manual.html` — manual com 30 artigos e acompanhamento local de leitura;
+- `manual.html` — manual com 31 artigos e acompanhamento local de leitura;
 - `trilha.html` — trilha prática de 14 sessões, com foco em revisão, replay e simulação;
 - `ferramentas.html` — exercícios interativos armazenados localmente no navegador;
 - `laboratorio.html` — laboratório comportamental com autópsia de sessões, cadeia gatilho→diálogo→ação, checklist de dia de fúria, replay corretivo, detector educativo de assimetria ganho/perda e reset periódico de contexto;
-- `referencias.html` — 41 referências bibliográficas comentadas;
+- `referencias.html` — 42 referências bibliográficas comentadas;
 - `assets/styles.css` — identidade visual, responsividade e impressão;
 - `assets/app.js` — tema, busca, progresso, persistência e ferramentas interativas;
 - `assets/course.js` — motor de quizzes, simulações, progresso do curso e exercício didático de dimensionamento;
@@ -26,7 +26,7 @@ O projeto combina finanças comportamentais, psicologia da decisão e ferramenta
 
 ## Temas do manual
 
-O conteúdo aborda aversão à perda, efeito disposição, pensamentos automáticos, ACT/desfusão, pré-compromisso, planos Se–Então, revenge trade, treino gradual, viés de resultado, vergonha e identidade, pensamento contrafactual, sunk cost, perfeccionismo/medo de fracasso, intolerância à incerteza, FOMO pós-stop, autocompaixão disciplinada, a crença de que é necessário “recuperar” perdas anteriores, emoções incidentais, procrastinação da disciplina, sobreconfiança, P&L como placar emocional, valores operacionais e responsabilidade sem vergonha, anatomia do dia de fúria, diálogos internos, efeito disposição em perspectiva psicológica e neuroeconômica, gerenciamento versus repressão emocional, debiasing, reset de contexto e replay corretivo.
+O conteúdo aborda aversão à perda, efeito disposição, pensamentos automáticos, ACT/desfusão, pré-compromisso, planos Se–Então, revenge trade, treino gradual, viés de resultado, vergonha e identidade, pensamento contrafactual, sunk cost, perfeccionismo/medo de fracasso, intolerância à incerteza, FOMO pós-stop, autocompaixão disciplinada, a crença de que é necessário “recuperar” perdas anteriores, emoções incidentais, procrastinação da disciplina, sobreconfiança, P&L como placar emocional, valores operacionais e responsabilidade sem vergonha, anatomia do dia de fúria, diálogos internos, efeito disposição em perspectiva psicológica e neuroeconômica, gerenciamento versus repressão emocional, debiasing, reset de contexto, replay corretivo e atenção ao aqui e agora por meio do protocolo A.G.O.R.A.
 
 ## Curso Aprender a Estopar
 
@@ -42,7 +42,7 @@ Formatos de importação previstos:
 - CSV do TradingView com colunas OHLC;
 - CSV do Profit/Nelogica com data, hora, OHLC e volume.
 
-Os candles são guardados em IndexedDB e compartilhados entre os simuladores embutidos no curso. O repositório não redistribui bases intradiárias proprietárias sem autorização explícita.
+Os candles são guardados em IndexedDB e compartilhados entre os simuladores embutidos no curso. O replay inclui o checkpoint A.G.O.R.A., que pode pausar automaticamente uma posição adversa para treinar separação entre fato, hipótese, desejo e regra. O repositório não redistribui bases intradiárias proprietárias sem autorização explícita.
 
 ## Como visualizar
 
