@@ -1,0 +1,57 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Simulador histórico candle a candle para treinar stops em gráficos de 2 e 5 minutos."><title>Simulador Histórico · Ressignificar o Estopar</title><link rel="stylesheet" href="assets/styles.css"></head><body class="replay-page">
+<header class="topbar replay-full-header"><div class="wrap nav"><a class="brand" href="index.html">Ressignificar o Estopar</a><nav class="navlinks"><a href="curso.html">Curso</a><a href="simulador.html">Simulador</a><a href="dados.html">Dados</a><a href="laboratorio.html">Laboratório</a><a href="manual.html">Manual</a></nav><button class="icon-btn" data-theme-toggle>◐</button><button class="icon-btn" data-menu>☰</button></div></header>
+<main class="section replay-main"><div class="wrap replay-wrap">
+<div class="replay-title"><div><div class="eyebrow">Replay de mercado</div><h1>Simulador Histórico</h1><p class="lead">Treine execução de stop em candles históricos reais, sem enxergar o futuro. Importe uma vez seus dados de WINFUT, WDOFUT, Nasdaq ou S&amp;P 500 e pratique principalmente em 2 e 5 minutos.</p></div><a class="btn secondary" href="dados.html">Como obter/importar dados</a></div>
+
+<div class="notice warning" data-embed-hide><strong>Dados:</strong> o repositório não redistribui bases proprietárias. Os candles que você importar ficam no seu navegador (IndexedDB). O simulador funciona no GitHub Pages sem backend.</div>
+
+<section class="replay-shell">
+<div class="replay-sidebar">
+<div class="tool compact-tool"><h3>1. Base histórica</h3>
+<label>Ativo</label><select data-replay-asset><option value="WINFUT">WINFUT</option><option value="WDOFUT">WDOFUT</option><option value="NASDAQ">NASDAQ / NQ / MNQ</option><option value="SP500">S&amp;P 500 / ES / MES</option></select>
+<label>Arquivo CSV</label><input type="file" accept=".csv,.txt" data-replay-file>
+<div class="toolbar"><button class="btn small-btn" data-replay-import>Importar e salvar</button><button class="btn secondary small-btn" data-replay-delete>Excluir base</button></div>
+<div class="small" data-replay-dataset-status>Nenhuma base carregada.</div></div>
+
+<div class="tool compact-tool"><h3>2. Sessão</h3>
+<label>Timeframe</label><select data-replay-timeframe><option value="2">2 minutos</option><option value="5">5 minutos</option></select>
+<label>Data</label><select data-replay-date><option value="">Importe uma base</option></select>
+<label>Desafio</label><select data-replay-challenge>
+<option value="free">Replay livre</option>
+<option value="stop">Executar o stop sem ampliar risco</option>
+<option value="recovery">Não operar para recuperar</option>
+<option value="disposition">Evitar ganhos curtos/perdas longas</option>
+<option value="context">Atualizar contexto</option>
+<option value="fury">Interromper escalada</option>
+</select>
+<div class="toolbar"><button class="btn" data-replay-load>Carregar sessão</button></div><div class="small" data-replay-session-status></div></div>
+
+<div class="tool compact-tool"><h3>3. Ordem simulada</h3>
+<div class="replay-price">Preço atual <strong data-replay-price>—</strong></div>
+<label>Stop obrigatório</label><input type="number" step="any" data-replay-stop>
+<label>Alvo opcional</label><input type="number" step="any" data-replay-target>
+<label>Por que este stop invalida minha hipótese?</label><textarea rows="2" data-replay-rationale placeholder="Escreva antes de entrar."></textarea>
+<div class="order-buttons"><button class="btn replay-buy" data-replay-buy>Comprar</button><button class="btn replay-sell" data-replay-sell>Vender</button></div>
+<div class="toolbar"><button class="btn secondary small-btn" data-replay-update-stop>Atualizar stop</button><button class="btn secondary small-btn" data-replay-exit>Zerar agora</button></div>
+<div class="small" data-replay-order-status>Sem posição.</div></div>
+</div>
+
+<div class="replay-stage">
+<div class="challenge-banner" data-replay-challenge-text>Importe uma base e carregue uma sessão para começar.</div>
+<div class="chart-toolbar">
+<button class="btn secondary small-btn" data-replay-back>← Reiniciar</button>
+<button class="btn secondary small-btn" data-replay-step>+1 candle</button>
+<button class="btn secondary small-btn" data-replay-play>▶ Reproduzir</button>
+<label>Velocidade <select data-replay-speed><option value="1200">1×</option><option value="650" selected>2×</option><option value="300">4×</option><option value="120">8×</option></select></label>
+<span class="small" data-replay-clock>—</span>
+</div>
+<div class="market-canvas-wrap"><canvas data-replay-canvas width="1100" height="600" aria-label="Gráfico candlestick histórico"></canvas><div class="chart-tooltip" data-replay-tooltip hidden></div></div>
+<div class="replay-stats">
+<div><span>Posição</span><strong data-stat-position>—</strong></div><div><span>P&amp;L atual</span><strong data-stat-pnl>0</strong></div><div><span>Trades</span><strong data-stat-trades>0</strong></div><div><span>Stops executados</span><strong data-stat-stops>0</strong></div><div><span>Ampliações de risco</span><strong data-stat-expansions>0</strong></div>
+</div>
+<div class="replay-log" data-replay-log><div class="small">As decisões da sessão aparecerão aqui.</div></div>
+</div>
+</section>
+
+<section class="article" data-embed-hide><h2>Como o motor trata stop e alvo</h2><p>A entrada ocorre no fechamento do candle atualmente visível. Ao avançar, o motor usa máxima e mínima do próximo candle para verificar stop/alvo. Se stop e alvo forem tocados no mesmo candle e os dados não permitirem saber a ordem intrabar, o simulador marca a ocorrência como <strong>ambígua</strong> e, por prudência didática, considera o stop primeiro. Para estudo mais preciso de execução intrabar, importe dados em granularidade menor.</p><p>O resultado é expresso principalmente em <strong>pontos</strong> e em <strong>R</strong> com base na distância inicial do stop; isso evita misturar regras contratuais distintas entre WIN, WDO e mercados americanos.</p></section>
+</div></main><footer class="replay-full-header"><div class="wrap">Simulador educativo. Não envia ordens e não constitui recomendação financeira.</div></footer><script src="assets/app.js"></script><script src="assets/replay.js"></script></body></html>
