@@ -13,16 +13,32 @@
     price:$("[data-replay-price]"),stop:$("[data-replay-stop]"),target:$("[data-replay-target]"),why:$("[data-replay-rationale]"),buy:$("[data-replay-buy]"),sell:$("[data-replay-sell]"),update:$("[data-replay-update-stop]"),exit:$("[data-replay-exit]"),order:$("[data-replay-order-status]"),
     back:$("[data-replay-back]"),step:$("[data-replay-step]"),play:$("[data-replay-play]"),speed:$("[data-replay-speed]"),clock:$("[data-replay-clock]"),challengeText:$("[data-replay-challenge-text]"),tooltip:$("[data-replay-tooltip]"),log:$("[data-replay-log]")
   };
-  const stats={position:$("[data-stat-position]"),pnl:$("[data-stat-pnl]"),trades:$("[data-stat-trades]"),stops:$("[data-stat-stops]"),expansions:$("[data-stat-expansions]")};
+  const stats={position:$("[data-stat-position]"),pnl:$("[data-stat-pnl]"),trades:$("[data-stat-trades]"),stops:$("[data-stat-stops]"),expansions:$("[data-stat-expansions]"),presence:$("[data-stat-presence]")};
 
-  let raw=[],bars=[],cursor=0,startCursor=0,timer=null,position=null,metrics={trades:0,stops:0,expansions:0,realized:0},lastMouse=null;
+  let raw=[],bars=[],cursor=0,startCursor=0,timer=null,position=null,metrics={trades:0,stops:0,expansions:0,presence:0,realized:0},lastMouse=null;
+  const presenceDialog=$("[data-presence-dialog]"),presenceOpen=$("[data-presence-open]"),presenceSave=$("[data-presence-save]"),presenceMsg=$("[data-presence-message]");
+  const openPresence=(auto=false)=>{
+    if(!presenceDialog)return;
+    const fact=$("[data-presence-fact]"),story=$("[data-presence-story]"),def=$("[data-presence-defusion]"),rule=$("[data-presence-rule]"),action=$("[data-presence-action]"),flat=$("[data-presence-flat]");
+    [fact,story,def,rule,action].forEach(x=>{if(x)x.value=""});if(flat)flat.checked=false;if(presenceMsg)presenceMsg.textContent=auto?"Checkpoint automático: a posição atingiu aproximadamente -0,5R pelo fechamento.":"";
+    if(typeof presenceDialog.showModal==="function")presenceDialog.showModal();else presenceDialog.setAttribute("open","");
+  };
+  if(presenceOpen)presenceOpen.addEventListener("click",()=>{stopPlay();openPresence(false)});
+  if(presenceSave)presenceSave.addEventListener("click",()=>{
+    const fact=$("[data-presence-fact]")?.value.trim(),story=$("[data-presence-story]")?.value.trim(),def=$("[data-presence-defusion]")?.value.trim(),rule=$("[data-presence-rule]")?.value.trim(),action=$("[data-presence-action]")?.value.trim(),flat=$("[data-presence-flat]")?.checked;
+    if(!fact||!rule||!action){if(presenceMsg)presenceMsg.textContent="Preencha pelo menos Fato, Regra e Ação.";return}
+    metrics.presence++;log(`A.G.O.R.A. · Fato: ${fact} · História: ${story||"—"} · Desfusão: ${def||"—"} · Regra: ${rule} · Ação: ${action} · Leitura zerado/P&L oculto: ${flat?"igual":"diferente ou incerta"}`,"ok");
+    updateUI();presenceDialog.close();
+  });
+
   const challengeText={
     free:"Replay livre: leia o contexto, defina o stop antes da entrada e avance sem enxergar candles futuros.",
     stop:"Desafio: abra uma posição com stop definido e não amplie o risco depois da entrada.",
     recovery:"Desafio: após um stop, só faça nova entrada se ela existir por mérito próprio — não para voltar ao zero.",
     disposition:"Desafio: observe se você encerra ganhos por desconforto e prolonga perdas por esperança. Use critérios, não o sinal do P&L.",
     context:"Desafio: a cada bloco de candles, reconstrua mentalmente a tese atual. O que mudou? O que contraria sua leitura?",
-    fury:"Desafio: perceba o primeiro sinal de escalada (urgência, raiva, frequência, aumento de risco) e interrompa a cadeia."
+    fury:"Desafio: perceba o primeiro sinal de escalada (urgência, raiva, frequência, aumento de risco) e interrompa a cadeia.",
+    present:"Desafio: quando a posição ficar desconfortável, pare de operar a reversão imaginada. Separe fato, hipótese e desejo e retorne à regra usando o checkpoint A.G.O.R.A."
   };
 
   const dbOpen=()=>new Promise((res,rej)=>{const r=indexedDB.open("ressignificar-market-data",1);r.onupgradeneeded=()=>{if(!r.result.objectStoreNames.contains("datasets"))r.result.createObjectStore("datasets",{keyPath:"asset"})};r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)});
@@ -97,7 +113,7 @@
     if(base&&base>tf){els.session.textContent=`A base parece ter ${base} min. Não é possível reconstruir candles de ${tf} min a partir de granularidade maior.`;return}
     let rs=resample(raw,tf).filter(x=>dateKey(x.t)===els.date.value);
     if(rs.length<25){els.session.textContent="Sessão curta demais após o resampling.";return}
-    bars=rs;metrics={trades:0,stops:0,expansions:0,realized:0};position=null;
+    bars=rs;metrics={trades:0,stops:0,expansions:0,presence:0,realized:0};position=null;
     const ch=els.challenge.value;startCursor=ch==="free"?Math.min(30,bars.length-1):Math.max(20,Math.min(bars.length-20,20+Math.floor(Math.random()*Math.max(1,bars.length-40))));
     cursor=startCursor;els.challengeText.textContent=challengeText[ch];els.session.textContent=`${bars.length} candles de ${tf} min · replay inicia no candle ${cursor+1}.`;els.log.innerHTML="";updateUI();draw();
   }
@@ -114,7 +130,7 @@
     if(side==="long"&&target!=null&&target<=b.c){log("Na compra, o alvo deve estar acima da entrada.","bad");return}
     if(side==="short"&&target!=null&&target>=b.c){log("Na venda, o alvo deve estar abaixo da entrada.","bad");return}
     if(position){log("Já existe uma posição aberta.","bad");return}
-    position={side,entry:b.c,stop,target,initialStop:stop,risk:Math.abs(b.c-stop),why,enteredAt:b.t};metrics.trades++;
+    position={side,entry:b.c,stop,target,initialStop:stop,risk:Math.abs(b.c-stop),why,enteredAt:b.t,presenceTriggered:false};metrics.trades++;
     log(`${side==="long"?"COMPRA":"VENDA"} @ ${fmt(b.c)} · stop ${fmt(stop)}${target!=null?" · alvo "+fmt(target):""}`,"ok");updateUI();draw();
   }
   els.buy.addEventListener("click",()=>enter("long"));els.sell.addEventListener("click",()=>enter("short"));
@@ -141,7 +157,12 @@
   }
   function step(){
     if(!bars.length||cursor>=bars.length-1){stopPlay();return}
-    cursor++;processBar(bars[cursor]);updateUI();draw();
+    cursor++;processBar(bars[cursor]);
+    if(position&&els.challenge.value==="present"&&!position.presenceTriggered&&position.risk>0){
+      const openPts=(bars[cursor].c-position.entry)*(position.side==="long"?1:-1),openR=openPts/position.risk;
+      if(openR<=-0.5){position.presenceTriggered=true;stopPlay();openPresence(true)}
+    }
+    updateUI();draw();
   }
   els.step.addEventListener("click",step);
   function stopPlay(){if(timer)clearInterval(timer);timer=null;els.play.textContent="▶ Reproduzir"}
@@ -151,7 +172,7 @@
 
   function updateUI(){
     const b=bars[cursor];els.price.textContent=b?fmt(b.c):"—";els.clock.textContent=b?fmtTime(b.t):"—";
-    stats.position.textContent=position?(position.side==="long"?"Comprado":"Vendido"):"—";stats.trades.textContent=metrics.trades;stats.stops.textContent=metrics.stops;stats.expansions.textContent=metrics.expansions;
+    stats.position.textContent=position?(position.side==="long"?"Comprado":"Vendido"):"—";stats.trades.textContent=metrics.trades;stats.stops.textContent=metrics.stops;stats.expansions.textContent=metrics.expansions;if(stats.presence)stats.presence.textContent=metrics.presence;
     let open=0;if(position&&b)open=(b.c-position.entry)*(position.side==="long"?1:-1);stats.pnl.textContent=`${fmt(metrics.realized+open)} pts`;
     els.order.textContent=position?`${position.side==="long"?"Comprado":"Vendido"} @ ${fmt(position.entry)} · stop ${fmt(position.stop)}${position.target!=null?" · alvo "+fmt(position.target):""}`:"Sem posição.";
   }
