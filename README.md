@@ -15,7 +15,7 @@ O conteúdo é educativo: evidências provenientes de psicologia clínica, espor
 
 1. **[Página inicial](https://pablopcdossantos2-sys.github.io/ressignificar-o-estopar/)** — visão geral e acesso às áreas do projeto.
 2. **[Curso Aprender a Estopar](https://pablopcdossantos2-sys.github.io/ressignificar-o-estopar/curso.html)** — oito módulos com exercícios, simulações, quizzes e avaliação final.
-3. **[Simulador Histórico](https://pablopcdossantos2-sys/ressignificar-o-estopar/simulador.html)** — replay candle a candle, com futuro oculto, ordens simuladas, stop, alvo e resultados em pontos/R.
+3. **[Simulador Histórico](https://pablopcdossantos2-sys.github.io/ressignificar-o-estopar/simulador.html)** — replay candle a candle, com futuro oculto, ordens simuladas, stop, alvo e resultados em pontos/R.
 4. **[Manual](https://pablopcdossantos2-sys.github.io/ressignificar-o-estopar/manual.html)** — 31 artigos sobre vieses, emoções, disciplina, efeito disposição, recuperação de perdas e atenção ao aqui e agora.
 5. **[Laboratório Comportamental](https://pablopcdossantos2-sys.github.io/ressignificar-o-estopar/laboratorio.html)** — ferramentas para revisar sessões, reconhecer gatilhos e praticar o protocolo A.G.O.R.A.
 6. **[Trilha prática](https://pablopcdossantos2-sys.github.io/ressignificar-o-estopar/trilha.html)** — programa de 14 sessões para treino e revisão.
