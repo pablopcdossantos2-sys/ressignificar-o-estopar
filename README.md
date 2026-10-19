@@ -1,69 +1,72 @@
 # Ressignificar o Estopar
 
-Web-portfólio/manual educativo sobre psicologia aplicada ao ato de estopar no trading.
+Web-portfólio educativo sobre a psicologia do trading, com foco em ressignificar o stop como uma ferramenta profissional de gestão de risco — e não como fracasso pessoal.
+
+**Acesse o site:** https://pablopcdossantos2-sys.github.io/ressignificar-o-estopar/  
+**Repositório:** https://github.com/pablopcdossantos2-sys/ressignificar-o-estopar
 
 ## Objetivo
 
-Ajudar traders a ressignificar o stop: de símbolo de fracasso para ferramenta profissional de gestão de risco e execução de um plano probabilístico.
+Ajudar traders a executar stops e seguir planos operacionais mesmo diante de desconforto, frustração, esperança de reversão ou desejo de recuperar perdas. O projeto reúne artigos, exercícios, simulações e ferramentas de auto-observação baseados em conceitos de psicologia da decisão, finanças comportamentais e abordagens como TCC e ACT.
 
-O projeto combina finanças comportamentais, psicologia da decisão e ferramentas inspiradas em TCC, ACT, regulação emocional, autocompaixão, intenções de implementação, intolerância à incerteza e princípios de aprendizagem.
+O conteúdo é educativo: evidências provenientes de psicologia clínica, esporte ou estudos gerais de decisão não são tratadas como prova automática de eficácia em trading.
 
-## Estrutura atual
+## Comece por aqui
 
-- `index.html` — página inicial e acesso aos módulos;
-- `curso.html` — curso interativo de 8 módulos para aprender a definir, executar e revisar stops, com exercícios, simulações, quizzes e avaliação final;
-- `simulador.html` — replay histórico candlestick com futuro oculto, ordens simuladas, stop/alvo, P&L em pontos/R e suporte principal a 2m/5m;
-- `dados.html` — tutorial de obtenção/importação de históricos e limites de licenciamento;
-- `manual.html` — manual com 31 artigos e acompanhamento local de leitura;
-- `trilha.html` — trilha prática de 14 sessões, com foco em revisão, replay e simulação;
-- `ferramentas.html` — exercícios interativos armazenados localmente no navegador;
-- `laboratorio.html` — laboratório comportamental com autópsia de sessões, cadeia gatilho→diálogo→ação, checklist de dia de fúria, replay corretivo, detector educativo de assimetria ganho/perda e reset periódico de contexto;
-- `referencias.html` — 42 referências bibliográficas comentadas;
-- `assets/styles.css` — identidade visual, responsividade e impressão;
-- `assets/app.js` — tema, busca, progresso, persistência e ferramentas interativas;
-- `assets/course.js` — motor de quizzes, simulações, progresso do curso e exercício didático de dimensionamento;
-- `assets/replay.js` — parser de CSV, IndexedDB, resampling, canvas candlestick, replay e motor de ordens.
+1. **[Página inicial](https://pablopcdossantos2-sys.github.io/ressignificar-o-estopar/)** — visão geral e acesso às áreas do projeto.
+2. **[Curso Aprender a Estopar](https://pablopcdossantos2-sys.github.io/ressignificar-o-estopar/curso.html)** — oito módulos com exercícios, simulações, quizzes e avaliação final.
+3. **[Simulador Histórico](https://pablopcdossantos2-sys/ressignificar-o-estopar/simulador.html)** — replay candle a candle, com futuro oculto, ordens simuladas, stop, alvo e resultados em pontos/R.
+4. **[Manual](https://pablopcdossantos2-sys.github.io/ressignificar-o-estopar/manual.html)** — 31 artigos sobre vieses, emoções, disciplina, efeito disposição, recuperação de perdas e atenção ao aqui e agora.
+5. **[Laboratório Comportamental](https://pablopcdossantos2-sys.github.io/ressignificar-o-estopar/laboratorio.html)** — ferramentas para revisar sessões, reconhecer gatilhos e praticar o protocolo A.G.O.R.A.
+6. **[Trilha prática](https://pablopcdossantos2-sys.github.io/ressignificar-o-estopar/trilha.html)** — programa de 14 sessões para treino e revisão.
+7. **[Ferramentas](https://pablopcdossantos2-sys.github.io/ressignificar-o-estopar/ferramentas.html)** — exercícios interativos de apoio à prática.
+8. **[Dados históricos](https://pablopcdossantos2-sys.github.io/ressignificar-o-estopar/dados.html)** — orientações para importar candles e compreender limites de dados/licenciamento.
+9. **[Bibliografia comentada](https://pablopcdossantos2-sys.github.io/ressignificar-o-estopar/referencias.html)** — referências para consulta e aprofundamento.
 
-## Temas do manual
+## Estrutura do projeto
 
-O conteúdo aborda aversão à perda, efeito disposição, pensamentos automáticos, ACT/desfusão, pré-compromisso, planos Se–Então, revenge trade, treino gradual, viés de resultado, vergonha e identidade, pensamento contrafactual, sunk cost, perfeccionismo/medo de fracasso, intolerância à incerteza, FOMO pós-stop, autocompaixão disciplinada, a crença de que é necessário “recuperar” perdas anteriores, emoções incidentais, procrastinação da disciplina, sobreconfiança, P&L como placar emocional, valores operacionais e responsabilidade sem vergonha, anatomia do dia de fúria, diálogos internos, efeito disposição em perspectiva psicológica e neuroeconômica, gerenciamento versus repressão emocional, debiasing, reset de contexto, replay corretivo e atenção ao aqui e agora por meio do protocolo A.G.O.R.A.
+- `index.html` — página inicial;
+- `curso.html` — curso interativo de oito módulos;
+- `simulador.html` — replay histórico e motor de ordens simuladas;
+- `dados.html` — tutorial de importação de históricos;
+- `manual.html` — manual de artigos e acompanhamento local de leitura;
+- `trilha.html` — trilha prática de 14 sessões;
+- `ferramentas.html` — exercícios interativos;
+- `laboratorio.html` — laboratório comportamental;
+- `referencias.html` — bibliografia comentada;
+- `assets/styles.css` — identidade visual e responsividade;
+- `assets/app.js` — tema, busca, progresso e ferramentas interativas;
+- `assets/course.js` — quizzes, simulações e progresso do curso;
+- `assets/replay.js` — importação CSV, armazenamento local, agregação de candles, desenho do gráfico e execução simulada.
 
-## Curso Aprender a Estopar
+## Curso e princípios pedagógicos
 
-O curso possui oito módulos: significado profissional do stop; invalidação e dimensionamento; execução sem negociação emocional; efeito disposição; pós-stop e recuperação; dia de fúria; vieses/reset de contexto; e replay corretivo com avaliação final.
+Os oito módulos abordam: significado profissional do stop; invalidação e dimensionamento; execução sem negociação emocional; efeito disposição; pós-stop e desejo de recuperação; dia de fúria; vieses e atualização de contexto; replay corretivo e avaliação final.
 
-A progressão é baseada em domínio de processo. O aluno recebe feedback imediato, pode repetir quizzes e simulações e tem seu progresso salvo localmente no navegador. O curso não usa rentabilidade simulada como critério de aprovação.
+A progressão é baseada no domínio do processo, não na rentabilidade simulada. O aluno pode repetir exercícios e quizzes, receber feedback e revisar suas decisões. O protocolo **A.G.O.R.A.** treina a separação entre fato observável, hipótese, desejo, regra e ação no presente.
 
-## Replay histórico
+## Simulador histórico
 
-O simulador trabalha com candles reais importados pelo usuário. Categorias suportadas: WINFUT, WDOFUT, NASDAQ/NQ/MNQ e S&P 500/ES/MES. Os timeframes principais são 2 e 5 minutos. Bases de 1 minuto podem ser agregadas para ambos; uma base de 5 minutos não pode reconstruir 2 minutos.
+O simulador aceita candles importados pelo usuário para as categorias WINFUT, WDOFUT, NASDAQ/NQ/MNQ e S&P 500/ES/MES. Os timeframes prioritários são 2 e 5 minutos. Bases de 1 minuto podem ser agregadas para esses períodos; uma base de 5 minutos não permite reconstruir fielmente candles de 2 minutos.
 
-Formatos de importação previstos:
+Formatos previstos:
 - CSV do TradingView com colunas OHLC;
 - CSV do Profit/Nelogica com data, hora, OHLC e volume.
 
-Os candles são guardados em IndexedDB e compartilhados entre os simuladores embutidos no curso. O replay inclui o checkpoint A.G.O.R.A., que pode pausar automaticamente uma posição adversa para treinar separação entre fato, hipótese, desejo e regra. O repositório não redistribui bases intradiárias proprietárias sem autorização explícita.
+O replay oculta os candles futuros até o avanço da simulação. Stop e alvo são simulados com os dados disponíveis; quando ambos são atingidos no mesmo candle e não é possível saber a ordem intrabar, o simulador sinaliza a ambiguidade e adota uma convenção conservadora para o exercício.
 
-## Como visualizar
+### Dados e privacidade
 
-Abra `index.html` no navegador ou publique a raiz do repositório com GitHub Pages.
+O projeto não redistribui bases intradiárias proprietárias sem autorização. Importe apenas arquivos que você tenha direito de utilizar. Os candles ficam no IndexedDB do navegador; progresso e exercícios utilizam armazenamento local do navegador. Esses dados não são enviados a um servidor pelo site e podem ser apagados ao limpar os dados do navegador.
 
-O projeto é estático e não exige backend. Os exercícios usam `localStorage`; os dados permanecem no navegador e podem ser apagados quando o usuário limpa os dados do site.
+## Executar localmente
 
-## Princípio editorial
-
-O manual não tenta fazer o usuário “gostar de perder”. O objetivo é treinar a capacidade de experimentar desconforto sem permitir que esse desconforto reescreva regras de risco tomadas fora do calor da operação.
-
-Conceitos clínicos são utilizados com limites explícitos. Uma evidência válida em psicologia clínica, esporte ou decisão geral não é apresentada como prova automática de eficácia para performance de trading.
+O projeto é estático e não exige backend ou processo de compilação. Para uma experiência local mais consistente, sirva a pasta raiz com qualquer servidor HTTP estático ou abra `index.html` diretamente no navegador. A versão publicada é disponibilizada pelo GitHub Pages.
 
 ## Escopo e limites
 
-Este projeto é educativo. Não substitui psicoterapia, avaliação psicológica ou atendimento médico, e não constitui recomendação financeira.
-
-## Referências
-
-Cada artigo liga diretamente à bibliografia pertinente. `referencias.html` reúne DOI e notas explicativas para consulta posterior.
+O projeto é educativo. Não substitui psicoterapia, avaliação psicológica ou atendimento médico, e não constitui recomendação financeira. As ferramentas de auto-observação não são instrumentos diagnósticos.
 
 ## Licença
 
-Conteúdo em desenvolvimento. Antes de redistribuir ou publicar comercialmente, defina uma licença explícita para o repositório.
+Consulte o arquivo `LICENSE` na raiz do repositório para os termos de uso e redistribuição.
