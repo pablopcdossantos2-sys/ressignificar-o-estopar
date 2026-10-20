@@ -6,7 +6,7 @@
 
 An educational website about trading psychology, focused on reframing the stop-loss as a professional risk-management tool rather than a personal failure.
 
-**Website:** https://pablopcdossantos2-sys.github.io/ressignificar-o-estopar/  
+**Website:** https://pablopcdossantos2-sys.github.io/ressignificar-o-estopar/index-en.html  
 
 **Language:** use the selector in the website header to switch between Portuguese and English. Your choice is saved in this browser; on first visit, the browser language is used as a suggestion.  
 
