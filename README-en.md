@@ -80,7 +80,3 @@ Ressignificar o Estopar is an educational, interactive web application independe
 Generative AI tools were used as an auxiliary resource during development. The author remains responsible for the project's conception, implementation, integration, and verification.
 
 Currículo Lattes: [http://lattes.cnpq.br/9500873674712528](http://lattes.cnpq.br/9500873674712528)
-
-## License
-
-See the LICENSE file at the repository root for the terms governing use and redistribution.
