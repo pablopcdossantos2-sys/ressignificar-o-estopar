@@ -80,7 +80,7 @@
     }
     out.sort((a,b)=>a.t-b.t);
     const uniq=[];let prev=-1;for(const b of out){if(b.t!==prev){uniq.push(b);prev=b.t}}
-    if(uniq.length<20)throw new Error("Poucos candles válidos encontrados ("+uniq.length+").");
+    if(uniq.length<20)throw new Error(tr("Poucos candles válidos encontrados (","Too few valid candles found (")+uniq.length+").");
     return uniq;
   }
   const median=a=>{const s=[...a].sort((x,y)=>x-y);return s[Math.floor(s.length/2)]};
@@ -147,7 +147,7 @@
 
   function closePosition(px,reason,wasStop,amb=false){
     const p=position;if(!p)return;const points=(px-p.entry)*(p.side==="long"?1:-1);metrics.realized+=points;if(wasStop)metrics.stops++;
-    log(`${reason}${amb?tr(" (candle ambíguo: stop e alvo tocaram)"," (ambiguous candle: stop and target were both touched)"):""} @ ${fmt(px)} · resultado ${points>=0?"+":""}${fmt(points)} pts · ${p.risk?fmt(points/p.risk)+"R":""}`,points>=0?"ok":"bad");position=null;updateUI();draw();
+    log(`${reason}${amb?tr(" (candle ambíguo: stop e alvo tocaram)"," (ambiguous candle: stop and target were both touched)"):""} @ ${fmt(px)} · ${tr("resultado","result")} ${points>=0?"+":""}${fmt(points)} pts · ${p.risk?fmt(points/p.risk)+"R":""}`,points>=0?"ok":"bad");position=null;updateUI();draw();
   }
   function processBar(b){
     if(!position)return;const p=position;
@@ -176,7 +176,7 @@
     const b=bars[cursor];els.price.textContent=b?fmt(b.c):"—";els.clock.textContent=b?fmtTime(b.t):"—";
     stats.position.textContent=position?(position.side==="long"?"Comprado":"Vendido"):"—";stats.trades.textContent=metrics.trades;stats.stops.textContent=metrics.stops;stats.expansions.textContent=metrics.expansions;if(stats.presence)stats.presence.textContent=metrics.presence;
     let open=0;if(position&&b)open=(b.c-position.entry)*(position.side==="long"?1:-1);stats.pnl.textContent=`${fmt(metrics.realized+open)} pts`;
-    els.order.textContent=position?`${position.side==="long"?"Comprado":"Vendido"} @ ${fmt(position.entry)} · stop ${fmt(position.stop)}${position.target!=null?" · alvo "+fmt(position.target):""}`:"Sem posição.";
+    els.order.textContent=position?`${position.side==="long"?tr("Comprado","Long"):tr("Vendido","Short")} @ ${fmt(position.entry)} · stop ${fmt(position.stop)}${position.target!=null?" · "+tr("alvo","target")+" "+fmt(position.target):""}`:tr("Sem posição.","No position.");
   }
   function log(msg,type=""){const d=document.createElement("div");d.className="replay-log-item "+type;d.innerHTML=`<span>${bars[cursor]?fmtTime(bars[cursor].t):""}</span><p>${msg}</p>`;els.log.prepend(d)}
 
