@@ -121,10 +121,10 @@
     const score=fields.reduce((s,f)=>s+Number(f.value),0);
     const out=document.querySelector("[data-traffic-output]");
     let label,msg,klass;
-    if(score<=2){label="VERDE";klass="green";msg="Seu autorrelato indica baixa pressão imediata. Ainda assim, qualquer nova operação deve cumprir integralmente o plano."}
-    else if(score<=5){label="AMARELO";klass="amber";msg="Há sinais de pressão decisória. Considere cumprir uma pausa prevista no seu plano, registrar o estado e só então reavaliar critérios objetivos."}
-    else {label="VERMELHO";klass="red";msg="Há forte pressão para agir. Evite usar uma nova operação para regular a emoção; siga os limites e procedimentos de interrupção já definidos no seu plano."}
-    out.innerHTML=`<span class="traffic ${klass}">${label}</span> · ${msg}<br><span class="small">Este semáforo é uma ferramenta educativa de autorreflexão, não um teste psicológico ou diagnóstico.</span>`;
+    if(score<=2){label=isEnglish?"GREEN":"VERDE";klass="green";msg=tr("Seu autorrelato indica baixa pressão imediata. Ainda assim, qualquer nova operação deve cumprir integralmente o plano.","Your self-report suggests low immediate pressure. Any new trade must still follow the plan in full.");}
+    else if(score<=5){label=isEnglish?"AMBER":"AMARELO";klass="amber";msg=tr("Há sinais de pressão decisória. Considere cumprir uma pausa prevista no seu plano, registrar o estado e só então reavaliar critérios objetivos.","There are signs of decision pressure. Consider taking a planned pause, recording your state, and then reassessing objective criteria.");}
+    else {label=isEnglish?"RED":"VERMELHO";klass="red";msg=tr("Há forte pressão para agir. Evite usar uma nova operação para regular a emoção; siga os limites e procedimentos de interrupção já definidos no seu plano.","There is strong pressure to act. Do not use a new trade to regulate emotion; follow the limits and interruption procedures already defined in your plan.");}
+    out.innerHTML=`<span class="traffic ${klass}">${label}</span> · ${msg}<br><span class="small">${tr("Este semáforo é uma ferramenta educativa de autorreflexão, não um teste psicológico ou diagnóstico.","This traffic light is an educational self-reflection tool, not a psychological test or diagnosis.")}</span>`;
   });
 
 
@@ -135,9 +135,9 @@
     const score=fields.reduce((s,f)=>s+Number(f.value),0);
     let label,msg;
     if(score<=3){label="BAIXA ESCALADA";msg="Poucos sinais foram marcados. Revise mesmo assim o primeiro gatilho e confirme se as regras permaneceram intactas."}
-    else if(score<=8){label="ESCALADA RELEVANTE";msg="Há vários sinais de mudança de comportamento. Identifique a primeira violação e construa um ponto de interrupção antes dela."}
-    else {label="ESCALADA ALTA";msg="O autorrelato mostra uma cadeia ampla de perda de processo. O foco da revisão deve ser interromper cedo a sequência, não encontrar uma justificativa para cada trade."}
-    out.textContent=label+" — "+msg+"\nPontuação: "+score+"/16. Ferramenta educativa, não teste psicológico.";
+    else if(score<=8){label=isEnglish?"MEANINGFUL ESCALATION":"ESCALADA RELEVANTE";msg=tr("Há vários sinais de mudança de comportamento. Identifique a primeira violação e construa um ponto de interrupção antes dela.","Several signs of behavioral change are present. Identify the first violation and create an interruption point before it.");}
+    else {label=isEnglish?"HIGH ESCALATION":"ESCALADA ALTA";msg=tr("O autorrelato mostra uma cadeia ampla de perda de processo. O foco da revisão deve ser interromper cedo a sequência, não encontrar uma justificativa para cada trade.","The self-report shows a broad chain of process breakdown. Focus on interrupting the sequence early, not justifying each trade.");}
+    out.textContent=label+" — "+msg+"\n"+(isEnglish?"Score: ":"Pontuação: ")+score+"/16. "+tr("Ferramenta educativa, não teste psicológico.","Educational tool, not a psychological test.");
   });
 
   const dispBtn=document.querySelector("[data-disposition-analyze]");
