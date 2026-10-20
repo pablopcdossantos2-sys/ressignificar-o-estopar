@@ -8,6 +8,8 @@ An educational website about trading psychology, focused on reframing the stop-l
 
 **Website:** https://pablopcdossantos2-sys.github.io/ressignificar-o-estopar/  
 
+**Language:** use the selector in the website header to switch between Portuguese and English. Your choice is saved in this browser; on first visit, the browser language is used as a suggestion.  
+
 > **Deployment:** the workflow in `.github/workflows/pages.yml` publishes the files from the `main` branch. See the [GitHub Actions run history](https://github.com/pablopcdossantos2-sys/ressignificar-o-estopar/actions/workflows/pages.yml) to check deployment status.
 
 ## Purpose
@@ -19,14 +21,14 @@ The content is educational: evidence from clinical psychology, sports, or genera
 ## Start here
 
 1. **[Home page](https://pablopcdossantos2-sys.github.io/ressignificar-o-estopar/)** — overview and access to the project sections.
-2. **[Learn to Use Stop-Losses course](https://pablopcdossantos2-sys.github.io/ressignificar-o-estopar/curso.html)** — eight modules with exercises, simulations, quizzes, and a final assessment.
-3. **[Historical Simulator](https://pablopcdossantos2-sys.github.io/ressignificar-o-estopar/simulador.html)** — candle-by-candle replay with future candles hidden, simulated orders, stop-losses, targets, and results in points/R.
-4. **[Manual](https://pablopcdossantos2-sys.github.io/ressignificar-o-estopar/manual.html)** — 31 articles on biases, emotions, discipline, the disposition effect, loss recovery, and attention to the present moment.
-5. **[Behavioral Lab](https://pablopcdossantos2-sys.github.io/ressignificar-o-estopar/laboratorio.html)** — tools for reviewing sessions, identifying triggers, and practicing the A.G.O.R.A. protocol.
-6. **[Practice pathway](https://pablopcdossantos2-sys.github.io/ressignificar-o-estopar/trilha.html)** — a 14-session program for practice and review.
-7. **[Tools](https://pablopcdossantos2-sys.github.io/ressignificar-o-estopar/ferramentas.html)** — interactive exercises to support practice.
-8. **[Historical data](https://pablopcdossantos2-sys.github.io/ressignificar-o-estopar/dados.html)** — guidance on importing candles and understanding data and licensing limits.
-9. **[Annotated bibliography](https://pablopcdossantos2-sys.github.io/ressignificar-o-estopar/referencias.html)** — references for further reading.
+2. **[Learn to Use Stop-Losses course](https://pablopcdossantos2-sys.github.io/ressignificar-o-estopar/curso-en.html)** — eight modules with exercises, simulations, quizzes, and a final assessment.
+3. **[Historical Simulator](https://pablopcdossantos2-sys.github.io/ressignificar-o-estopar/simulador-en.html)** — candle-by-candle replay with future candles hidden, simulated orders, stop-losses, targets, and results in points/R.
+4. **[Manual](https://pablopcdossantos2-sys.github.io/ressignificar-o-estopar/manual-en.html)** — 31 articles on biases, emotions, discipline, the disposition effect, loss recovery, and attention to the present moment.
+5. **[Behavioral Lab](https://pablopcdossantos2-sys.github.io/ressignificar-o-estopar/laboratorio-en.html)** — tools for reviewing sessions, identifying triggers, and practicing the A.G.O.R.A. protocol.
+6. **[Practice pathway](https://pablopcdossantos2-sys.github.io/ressignificar-o-estopar/trilha-en.html)** — a 14-session program for practice and review.
+7. **[Tools](https://pablopcdossantos2-sys.github.io/ressignificar-o-estopar/ferramentas-en.html)** — interactive exercises to support practice.
+8. **[Historical data](https://pablopcdossantos2-sys.github.io/ressignificar-o-estopar/dados-en.html)** — guidance on importing candles and understanding data and licensing limits.
+9. **[Annotated bibliography](https://pablopcdossantos2-sys.github.io/ressignificar-o-estopar/referencias-en.html)** — references for further reading.
 
 ## Project structure
 

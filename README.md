@@ -8,6 +8,8 @@ Web site educacional sobre psicologia do trading, com foco em ressignificar o st
 
 **Site:** https://pablopcdossantos2-sys.github.io/ressignificar-o-estopar/  
 
+**Idioma:** use o seletor no cabeçalho do site para alternar entre português e inglês. A escolha fica salva neste navegador; no primeiro acesso, o idioma do navegador é usado como sugestão.  
+
 > **Publicação:** o workflow em `.github/workflows/pages.yml` publica os arquivos da branch `main`. Consulte o [histórico do GitHub Actions](https://github.com/pablopcdossantos2-sys/ressignificar-o-estopar/actions/workflows/pages.yml) para acompanhar o status das implantações.
 
 ## Objetivo
