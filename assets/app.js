@@ -1,5 +1,38 @@
 (() => {
   const root=document.documentElement;
+  const isEnglish=root.lang==="en";
+  const tr=(pt,en)=>isEnglish?en:pt;
+  const nav=document.querySelector(".nav");
+  const themeControl=nav&&nav.querySelector("[data-theme-toggle]");
+  if(nav&&themeControl&&!nav.querySelector("[data-language-select]")){
+    const label=document.createElement("label");
+    label.className="language-switch";
+    label.innerHTML=(isEnglish?'<span>Language</span>':'<span>Idioma</span>')+'<select data-language-select aria-label="'+(isEnglish?'Select language':'Selecionar idioma')+'"><option value="pt">Português</option><option value="en">English</option></select>';
+    nav.insertBefore(label,themeControl);
+  }
+  const pagePath=location.pathname;
+  const pageFile=pagePath.split("/").pop()||"index.html";
+  const onEnglishPage=/-en\\.html$/i.test(pageFile);
+  const portugueseFile=onEnglishPage?pageFile.replace(/-en\\.html$/i,".html"):pageFile;
+  const englishFile=portugueseFile.replace(/\\.html$/i,"-en.html");
+  const savedLanguage=localStorage.getItem("re-language");
+  const browserEnglish=/^en(?:-|$)/i.test(navigator.language||"");
+  const currentLanguage=onEnglishPage?"en":"pt";
+  const wantedLanguage=savedLanguage||(!onEnglishPage&&browserEnglish?"en":currentLanguage);
+  const wantedFile=wantedLanguage==="en"?englishFile:portugueseFile;
+  if(wantedLanguage!==currentLanguage&&wantedFile!==pageFile){
+    location.replace(pagePath.slice(0,pagePath.length-pageFile.length)+wantedFile+location.search+location.hash);
+    return;
+  }
+  document.querySelectorAll("[data-language-select]").forEach(select=>{
+    select.value=currentLanguage;
+    select.addEventListener("change",()=>{
+      const next=select.value==="en"?"en":"pt";
+      localStorage.setItem("re-language",next);
+      const target=next==="en"?englishFile:portugueseFile;
+      location.href=pagePath.slice(0,pagePath.length-pageFile.length)+target+location.search+location.hash;
+    });
+  });
   const saved=localStorage.getItem("re-theme");
   if(saved) root.dataset.theme=saved;
   const themeBtn=document.querySelector("[data-theme-toggle]");

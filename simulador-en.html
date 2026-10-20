@@ -1,0 +1,70 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Simulador histórico candle a candle para treinar stops em gráficos de 2 e 5 minutes."><title>Historical Simulator · Ressignificar o Estopar</title><link rel="stylesheet" href="assets/styles.css"></head><body class="replay-page">
+<header class="topbar replay-full-header"><div class="wrap nav"><a class="brand" href="index-en.html">Ressignificar o Estopar</a><nav class="navlinks"><a href="curso-en.html">Curso</a><a href="simulador-en.html">Simulador</a><a href="dados-en.html">Dados</a><a href="laboratorio-en.html">Laboratório</a><a href="manual-en.html">Manual</a></nav><button class="icon-btn" data-theme-toggle>◐</button><button class="icon-btn" data-menu>☰</button></div></header>
+<main class="section replay-main"><div class="wrap replay-wrap">
+<div class="replay-title"><div><div class="eyebrow">Market replay</div><h1>Historical Simulator</h1><p class="lead">Practice stop execution on real historical candles without seeing the future. Import data for WINFUT, WDOFUT, Nasdaq, or S&amp;P 500 and practice mainly on 2- and 5-minute sessions.</p></div><a class="btn secondary" href="dados-en.html">How to get/import data</a></div>
+
+<div class="notice warning" data-embed-hide><strong>Date:</strong> this repository does not redistribute proprietary datasets. Imported candles stay in your browser (IndexedDB). The simulator runs on GitHub Pages without a backend.</div>
+
+<section class="replay-shell">
+<div class="replay-sidebar">
+<div class="tool compact-tool"><h3>1. Historical dataset</h3>
+<label>Instrument</label><select data-replay-asset><option value="WINFUT">WINFUT</option><option value="WDOFUT">WDOFUT</option><option value="NASDAQ">NASDAQ / NQ / MNQ</option><option value="SP500">S&amp;P 500 / ES / MES</option></select>
+<label>CSV file</label><input type="file" accept=".csv,.txt" data-replay-file>
+<div class="toolbar"><button class="btn small-btn" data-replay-import>Import and save</button><button class="btn secondary small-btn" data-replay-delete>Delete dataset</button></div>
+<div class="small" data-replay-dataset-status>No dataset loaded.</div></div>
+
+<div class="tool compact-tool"><h3>2. Session</h3>
+<label>Timeframe</label><select data-replay-timeframe><option value="2">2 minutes</option><option value="5">5 minutes</option></select>
+<label>Date</label><select data-replay-date><option value="">Import a dataset</option></select>
+<label>Challenge</label><select data-replay-challenge>
+<option value="free">Free replay</option>
+<option value="stop">Execute the stop without increasing risk</option>
+<option value="recovery">Do not trade to recover</option>
+<option value="disposition">Avoid short winners / long losers</option>
+<option value="context">Refresh context</option>
+<option value="fury">Interrupt escalation</option><option value="present">Here and now: fact vs. story</option>
+</select>
+<div class="toolbar"><button class="btn" data-replay-load>Load session</button></div><div class="small" data-replay-session-status></div></div>
+
+<div class="tool compact-tool"><h3>3. Simulated order</h3>
+<div class="replay-price">Current price <strong data-replay-price>—</strong></div>
+<label>Required stop</label><input type="number" step="any" data-replay-stop>
+<label>Optional target</label><input type="number" step="any" data-replay-target>
+<label>Why does this stop invalidate my hypothesis?</label><textarea rows="2" data-replay-rationale placeholder="Escreva antes de entrar."></textarea>
+<div class="order-buttons"><button class="btn replay-buy" data-replay-buy>Buy</button><button class="btn replay-sell" data-replay-sell>Sell</button></div>
+<div class="toolbar"><button class="btn secondary small-btn" data-replay-update-stop>Update stop</button><button class="btn secondary small-btn" data-replay-exit>Close position now</button></div>
+<div class="small" data-replay-order-status>Sem posição.</div></div>
+</div>
+
+<div class="replay-stage">
+<div class="challenge-banner" data-replay-challenge-text>Import a dataset e carregue uma sessão para começar.</div>
+<div class="chart-toolbar">
+<button class="btn secondary small-btn" data-replay-back>← Reiniciar</button>
+<button class="btn secondary small-btn" data-replay-step>+1 candle</button>
+<button class="btn secondary small-btn" data-replay-play>▶ Play</button><button class="btn secondary small-btn" data-presence-open>A.G.O.R.A.</button>
+<label>Speed <select data-replay-speed><option value="1200">1×</option><option value="650" selected>2×</option><option value="300">4×</option><option value="120">8×</option></select></label>
+<span class="small" data-replay-clock>—</span>
+</div>
+<div class="market-canvas-wrap"><canvas data-replay-canvas width="1100" height="600" aria-label="Gráfico candlestick histórico"></canvas><div class="chart-tooltip" data-replay-tooltip hidden></div></div>
+<div class="replay-stats">
+<div><span>Position</span><strong data-stat-position>—</strong></div><div><span>Current P&amp;L</span><strong data-stat-pnl>0</strong></div><div><span>Trades</span><strong data-stat-trades>0</strong></div><div><span>Stops executed</span><strong data-stat-stops>0</strong></div><div><span>Risk increases</span><strong data-stat-expansions>0</strong></div><div><span>A.G.O.R.A. checkpoints</span><strong data-stat-presence>0</strong></div>
+</div>
+<div class="replay-log" data-replay-log><div class="small">Session decisions will appear here.</div></div>
+</div>
+</section>
+<dialog class="presence-dialog" data-presence-dialog>
+<form method="dialog" class="presence-card">
+<div class="number">A.G.O.R.A. CHECKPOINT</div><h2>Here and now</h2>
+<p>Do not try to predict for a moment. Separate what exists from what your mind wants to happen.</p>
+<label><strong>A · Observable fact now</strong><textarea data-presence-fact placeholder="Descreva sem usar “vai”, “deve”, “quando” ou lucro futuro."></textarea></label>
+<label><strong>G · Story/hypothesis my mind is producing</strong><textarea data-presence-story placeholder="Ex.: vai voltar; é só um pullback; quando reverter recupero."></textarea></label>
+<label><strong>O · Name it as a thought</strong><input data-presence-defusion placeholder="Ex.: estou percebendo o pensamento de que vai voltar."></label>
+<label><strong>R · Objective rule that applies now</strong><textarea data-presence-rule placeholder="Qual condição permite permanecer? Qual exige sair?"></textarea></label>
+<label><strong>A · Action according to the plan</strong><textarea data-presence-action placeholder="O que farei agora, sem usar lucro hipotético como argumento?"></textarea></label>
+<label class="presence-flat"><input type="checkbox" data-presence-flat> If I were flat and could not see my P&amp;L, would my reading be the same?</label>
+<div class="toolbar"><button type="button" class="btn" data-presence-save>Save checkpoint</button><button class="btn secondary" value="cancel">Cancel</button></div>
+<div class="small" data-presence-message></div>
+</form></dialog>
+
+<section class="article" data-embed-hide><h2>How the engine handles stops and targets</h2><p>A entrada ocorre no fechamento do candle atualmente visível. Ao avançar, o motor usa máxima e mínima do próximo candle para verificar stop/alvo. Se stop e alvo forem tocados no mesmo candle e os dados não permitirem saber a ordem intrabar, o simulador marca a ocorrência como <strong>ambígua</strong> e, por prudência didática, considera o stop primeiro. Para estudo mais preciso de execução intrabar, importe dados em granularidade menor.</p><p>O resultado é expresso principalmente em <strong>pontos</strong> e em <strong>R</strong> com base na distância inicial do stop; isso evita misturar regras contratuais distintas entre WIN, WDO e mercados americanos.</p></section>
+</div></main><footer class="replay-full-header"><div class="wrap">Educational simulator. It does not send orders and is not financial advice.</div></footer><script src="assets/app.js"></script><script src="assets/replay.js"></script></body></html>
