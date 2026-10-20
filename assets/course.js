@@ -1,6 +1,7 @@
 (() => {
   const isEnglish=document.documentElement.lang==="en";
-  const tr=(pt,en)=>isEnglish?en:pt;\n  const key="re-course-progress";
+  const tr=(pt,en)=>isEnglish?en:pt;
+  const key="re-course-progress";
   let progress={modules:{},bestFinal:null};
   try{progress={modules:{},bestFinal:null,...JSON.parse(localStorage.getItem(key)||"{}")};progress.modules=progress.modules||{}}catch{}
   const save=()=>localStorage.setItem(key,JSON.stringify(progress));
