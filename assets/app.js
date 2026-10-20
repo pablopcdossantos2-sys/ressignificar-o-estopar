@@ -82,7 +82,7 @@
   let read=[];
   try{read=JSON.parse(localStorage.getItem("re-read-articles")||"[]")}catch{}
   const renderRead=()=>{
-    readButtons.forEach(b=>{const done=read.includes(b.dataset.completeArticle);b.classList.toggle("is-done",done);b.textContent=done?"✓ Lido":"Marcar como lido"});
+    readButtons.forEach(b=>{const done=read.includes(b.dataset.completeArticle);b.classList.toggle("is-done",done);b.textContent=done?tr("✓ Lido","✓ Read"):tr("Marcar como lido","Mark as read")});
     if(progressText) progressText.textContent=isEnglish?`${read.length} of ${readButtons.length} articles marked as read`:`${read.length} de ${readButtons.length} artigos marcados como lidos`;
     if(progressFill) progressFill.style.width=(readButtons.length?read.length/readButtons.length*100:0)+"%";
   };
