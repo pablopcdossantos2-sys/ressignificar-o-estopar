@@ -1,9 +1,15 @@
 # Ressignificar o Estopar
 
-Web-portfólio educativo sobre a psicologia do trading, com foco em ressignificar o stop como uma ferramenta profissional de gestão de risco — e não como fracasso pessoal.
+*Read this in other languages: [English](README-en.md)*
 
-**Acesse o site:** https://pablopcdossantos2-sys.github.io/ressignificar-o-estopar/  
+---
+
+Web site educacional sobre psicologia do trading, com foco em ressignificar o stop como uma ferramenta profissional de gestão de risco — e não como fracasso pessoal.
+
+**Endereço previsto do site (após habilitar o GitHub Pages):** https://pablopcdossantos2-sys.github.io/ressignificar-o-estopar/  
 **Repositório:** https://github.com/pablopcdossantos2-sys/ressignificar-o-estopar
+
+> **Nota de publicação:** o workflow de implantação está no repositório, mas o site público depende da habilitação de GitHub Actions em **Settings → Pages** e de uma execução bem-sucedida. Até a confirmação da publicação, os endereços do site abaixo representam os caminhos planejados.
 
 ## Objetivo
 
@@ -25,19 +31,19 @@ O conteúdo é educativo: evidências provenientes de psicologia clínica, espor
 
 ## Estrutura do projeto
 
-- `index.html` — página inicial;
-- `curso.html` — curso interativo de oito módulos;
-- `simulador.html` — replay histórico e motor de ordens simuladas;
-- `dados.html` — tutorial de importação de históricos;
-- `manual.html` — manual de artigos e acompanhamento local de leitura;
-- `trilha.html` — trilha prática de 14 sessões;
-- `ferramentas.html` — exercícios interativos;
-- `laboratorio.html` — laboratório comportamental;
-- `referencias.html` — bibliografia comentada;
-- `assets/styles.css` — identidade visual e responsividade;
-- `assets/app.js` — tema, busca, progresso e ferramentas interativas;
-- `assets/course.js` — quizzes, simulações e progresso do curso;
-- `assets/replay.js` — importação CSV, armazenamento local, agregação de candles, desenho do gráfico e execução simulada.
+- **index.html** — página inicial;
+- **curso.html** — curso interativo de oito módulos;
+- **simulador.html** — replay histórico e motor de ordens simuladas;
+- **dados.html** — tutorial de importação de históricos;
+- **manual.html** — manual de artigos e acompanhamento local de leitura;
+- **trilha.html** — trilha prática de 14 sessões;
+- **ferramentas.html** — exercícios interativos;
+- **laboratorio.html** — laboratório comportamental;
+- **referencias.html** — bibliografia comentada;
+- **assets/styles.css** — identidade visual e responsividade;
+- **assets/app.js** — tema, busca, progresso e ferramentas interativas;
+- **assets/course.js** — quizzes, simulações e progresso do curso;
+- **assets/replay.js** — importação CSV, armazenamento local, agregação de candles, desenho do gráfico e execução simulada.
 
 ## Curso e princípios pedagógicos
 
@@ -61,12 +67,20 @@ O projeto não redistribui bases intradiárias proprietárias sem autorização.
 
 ## Executar localmente
 
-O projeto é estático e não exige backend ou processo de compilação. Para uma experiência local mais consistente, sirva a pasta raiz com qualquer servidor HTTP estático ou abra `index.html` diretamente no navegador. A versão publicada é disponibilizada pelo GitHub Pages.
+O projeto é estático e não exige backend ou processo de compilação. Para uma experiência local mais consistente, sirva a pasta raiz com qualquer servidor HTTP estático ou abra index.html diretamente no navegador. A versão pública depende da habilitação e da publicação bem-sucedida pelo GitHub Pages.
 
 ## Escopo e limites
 
 O projeto é educativo. Não substitui psicoterapia, avaliação psicológica ou atendimento médico, e não constitui recomendação financeira. As ferramentas de auto-observação não são instrumentos diagnósticos.
 
+## 👤 Autoria e desenvolvimento
+
+Ressignificar o Estopar é uma aplicação web educacional e interativa, desenvolvida de forma independente por Pablo Phillipe Cândido dos Santos, voltada ao estudo da psicologia aplicada ao trading e ao treinamento de decisões relacionadas à execução de stops e à gestão comportamental do risco. Reúne curso, artigos, exercícios, ferramentas de auto-observação e simulador de replay histórico com dados importados pelo usuário.
+
+O desenvolvimento contou com a utilização de ferramentas de inteligência artificial generativa como recurso auxiliar, mantendo-se sob responsabilidade do autor a concepção, implementação, integração e verificação do projeto.
+
+Currículo Lattes: [http://lattes.cnpq.br/9500873674712528](http://lattes.cnpq.br/9500873674712528)
+
 ## Licença
 
-Consulte o arquivo `LICENSE` na raiz do repositório para os termos de uso e redistribuição.
+Consulte o arquivo LICENSE na raiz do repositório para os termos de uso e redistribuição.
