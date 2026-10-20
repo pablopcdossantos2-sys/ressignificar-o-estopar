@@ -90,33 +90,33 @@
     return [...map.values()].sort((a,b)=>a.t-b.t);
   }
   const dateKey=t=>{const d=new Date(t);return [d.getFullYear(),String(d.getMonth()+1).padStart(2,"0"),String(d.getDate()).padStart(2,"0")].join("-")};
-  const fmtTime=t=>new Date(t).toLocaleString("pt-BR",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"});
-  const fmt=n=>Number.isFinite(n)?new Intl.NumberFormat("pt-BR",{maximumFractionDigits:4}).format(n):"—";
+  const fmtTime=t=>new Date(t).toLocaleString(isEnglish?"en-US":"pt-BR",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"});
+  const fmt=n=>Number.isFinite(n)?new Intl.NumberFormat(isEnglish?"en-US":"pt-BR",{maximumFractionDigits:4}).format(n):"—";
 
   async function refreshDataset(){
     const d=await dbGet(els.asset.value);raw=d?.bars||[];
-    if(!d){els.status.textContent="Nenhuma base salva para "+els.asset.value+".";els.date.innerHTML='<option value="">Importe uma base</option>';return}
-    const base=baseMinutes(raw);els.status.textContent=`${raw.length.toLocaleString("pt-BR")} candles salvos · granularidade detectada ≈ ${base||"?"} min · importado em ${new Date(d.importedAt).toLocaleDateString("pt-BR")}`;
+    if(!d){els.status.textContent=tr("Nenhuma base salva para ","No saved dataset for ")+els.asset.value+".";els.date.innerHTML='<option value="">'+tr("Importe uma base","Import a dataset")+'</option>';return}
+    const base=baseMinutes(raw);els.status.textContent=`${raw.length.toLocaleString(isEnglish?"en-US":"pt-BR")} ${tr("candles salvos","candles saved")} · ${tr("granularidade detectada","detected interval")} ≈ ${base||"?"} min · ${tr("importado em","imported on")} ${new Date(d.importedAt).toLocaleDateString(isEnglish?"en-US":"pt-BR")}`;
     const dates=[...new Set(raw.map(x=>dateKey(x.t)))].sort();
     els.date.innerHTML=dates.map(x=>`<option value="${x}">${x.split("-").reverse().join("/")}</option>`).join("");
   }
 
   els.imp.addEventListener("click",async()=>{
-    try{const f=els.file.files?.[0];if(!f)throw new Error("Selecione um CSV.");els.status.textContent="Lendo arquivo…";const parsed=parseCSV(await f.text());await dbPut({asset:els.asset.value,bars:parsed,importedAt:Date.now(),filename:f.name});if(dataChannel)dataChannel.postMessage({type:"dataset-updated",asset:els.asset.value});els.status.textContent=tr("Importação concluída.","Import complete.");await refreshDataset()}catch(e){els.status.textContent="Erro: "+e.message}
+    try{const f=els.file.files?.[0];if(!f)throw new Error(tr("Selecione um CSV.","Select a CSV file."));els.status.textContent=tr("Lendo arquivo…","Reading file…");const parsed=parseCSV(await f.text());await dbPut({asset:els.asset.value,bars:parsed,importedAt:Date.now(),filename:f.name});if(dataChannel)dataChannel.postMessage({type:"dataset-updated",asset:els.asset.value});els.status.textContent=tr("Importação concluída.","Import complete.");await refreshDataset()}catch(e){els.status.textContent=tr("Erro: ","Error: ")+e.message}
   });
   els.del.addEventListener("click",async()=>{await dbDelete(els.asset.value);raw=[];bars=[];render();await refreshDataset()});
   els.asset.addEventListener("change",refreshDataset);
   if(dataChannel)dataChannel.onmessage=e=>{if(e.data?.type==="dataset-updated"&&e.data.asset===els.asset.value)refreshDataset()};
 
   function loadSession(){
-    if(!raw.length){els.session.textContent="Importe/carregue uma base primeiro.";return}
+    if(!raw.length){els.session.textContent=tr("Importe/carregue uma base primeiro.","Import or load a dataset first.");return}
     const tf=Number(els.tf.value),base=baseMinutes(raw);
-    if(base&&base>tf){els.session.textContent=`A base parece ter ${base} min. Não é possível reconstruir candles de ${tf} min a partir de granularidade maior.`;return}
+    if(base&&base>tf){els.session.textContent=isEnglish?`The dataset appears to be ${base} min. Candles of ${tf} min cannot be reconstructed from a coarser interval.`:`A base parece ter ${base} min. Não é possível reconstruir candles de ${tf} min a partir de granularidade maior.`;return}
     let rs=resample(raw,tf).filter(x=>dateKey(x.t)===els.date.value);
     if(rs.length<25){els.session.textContent=tr("Sessão curta demais após o resampling.","Session is too short after resampling.");return}
     bars=rs;metrics={trades:0,stops:0,expansions:0,presence:0,realized:0};position=null;
     const ch=els.challenge.value;startCursor=ch==="free"?Math.min(30,bars.length-1):Math.max(20,Math.min(bars.length-20,20+Math.floor(Math.random()*Math.max(1,bars.length-40))));
-    cursor=startCursor;els.challengeText.textContent=challengeText[ch];els.session.textContent=`${bars.length} candles de ${tf} min · replay inicia no candle ${cursor+1}.`;els.log.innerHTML="";updateUI();draw();
+    cursor=startCursor;els.challengeText.textContent=challengeText[ch];els.session.textContent=`${bars.length} ${tr("candles de","candles at")} ${tf} min · ${tr("replay inicia no candle","replay starts at candle")} ${cursor+1}.`;els.log.innerHTML="";updateUI();draw();
   }
   els.load.addEventListener("click",loadSession);
   els.challenge.addEventListener("change",()=>els.challengeText.textContent=challengeText[els.challenge.value]);
@@ -128,18 +128,18 @@
     if(side==="long"&&stop>=b.c){log(tr("Compra recusada: o stop precisa estar abaixo da entrada.","Buy rejected: the stop must be below entry."),"bad");return}
     if(side==="short"&&stop<=b.c){log(tr("Venda recusada: o stop precisa estar acima da entrada.","Sell rejected: the stop must be above entry."),"bad");return}
     if(target!=null&&!Number.isFinite(target))return;
-    if(side==="long"&&target!=null&&target<=b.c){log("Na compra, o alvo deve estar acima da entrada.","bad");return}
-    if(side==="short"&&target!=null&&target>=b.c){log("Na venda, o alvo deve estar abaixo da entrada.","bad");return}
+    if(side==="long"&&target!=null&&target<=b.c){log(tr("Na compra, o alvo deve estar acima da entrada.","For a buy, the target must be above entry."),"bad");return}
+    if(side==="short"&&target!=null&&target>=b.c){log(tr("Na venda, o alvo deve estar abaixo da entrada.","For a sell, the target must be below entry."),"bad");return}
     if(position){log(tr("Já existe uma posição aberta.","A position is already open."),"bad");return}
     position={side,entry:b.c,stop,target,initialStop:stop,risk:Math.abs(b.c-stop),why,enteredAt:b.t,presenceTriggered:false};metrics.trades++;
-    log(`${side==="long"?"COMPRA":"VENDA"} @ ${fmt(b.c)} · stop ${fmt(stop)}${target!=null?" · alvo "+fmt(target):""}`,"ok");updateUI();draw();
+    log(`${side==="long"?tr("COMPRA","BUY"):tr("VENDA","SELL")} @ ${fmt(b.c)} · stop ${fmt(stop)}${target!=null?" · "+tr("alvo","target")+" "+fmt(target):""}`,"ok");updateUI();draw();
   }
   els.buy.addEventListener("click",()=>enter("long"));els.sell.addEventListener("click",()=>enter("short"));
   els.update.addEventListener("click",()=>{
     if(!position){log(tr("Sem posição para atualizar.","No position to update."),"bad");return}
     const s=Number(els.stop.value);if(!Number.isFinite(s)){log(tr("Stop inválido.","Invalid stop."),"bad");return}
     const old=position.stop;const expanding=position.side==="long"?s<old:s>old;
-    if(expanding){metrics.expansions++;log(`⚠ Stop ampliado de ${fmt(old)} para ${fmt(s)}. Violação registrada como aumento de risco.`,"warn")}else log(`Stop atualizado de ${fmt(old)} para ${fmt(s)}.`,"ok");
+    if(expanding){metrics.expansions++;log(isEnglish?`⚠ Stop widened from ${fmt(old)} to ${fmt(s)}. Violation recorded as increased risk.`:`⚠ Stop ampliado de ${fmt(old)} para ${fmt(s)}. Violação registrada como aumento de risco.`,"warn")}else log(isEnglish?`Stop updated from ${fmt(old)} to ${fmt(s)}.`:`Stop atualizado de ${fmt(old)} para ${fmt(s)}.`,"ok");
     position.stop=s;updateUI();draw();
   });
   els.exit.addEventListener("click",()=>{if(!position)return;closePosition(bars[cursor].c,tr("Saída manual","Manual exit"),false)});
