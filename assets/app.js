@@ -152,7 +152,7 @@
     const flags=[];
     if(timeRatio>=1.5) flags.push(tr("perdedores permanecem abertos muito mais tempo que vencedores","losing trades remain open much longer than winning trades"));
     if(payoff<1) flags.push(tr("o ganho médio é menor que a perda média","the average gain is smaller than the average loss"));
-    let msg=flags.length?"${tr("Amostra com assimetrias que merecem investigação: ","Sample contains asymmetries worth investigating: ")}"+flags.join("; ")+".":tr("Nenhuma das duas assimetrias simples usadas por esta ferramenta apareceu de forma forte.","Neither of the two simple asymmetries used by this tool appeared strongly.");
+    let msg=flags.length?tr("Amostra com assimetrias que merecem investigação: ","Sample contains asymmetries worth investigating: ")+flags.join("; ")+".":tr("Nenhuma das duas assimetrias simples usadas por esta ferramenta apareceu de forma forte.","Neither of the two simple asymmetries used by this tool appeared strongly.");
     out.textContent=isEnglish?`Duration ratio (loser/winner): ${timeRatio.toFixed(2)}x.\nAverage payoff (gain/loss): ${payoff.toFixed(2)}.\n${msg}\nThis does not diagnose the disposition effect; compare with your strategy rules and mathematical expectancy.`:`Razão de duração (perdedor/vencedor): ${timeRatio.toFixed(2)}x.\nPayoff médio (ganho/perda): ${payoff.toFixed(2)}.\n${msg}\nIsso não diagnostica efeito disposição: compare com as regras e a expectativa matemática da sua estratégia.`;
   });
 

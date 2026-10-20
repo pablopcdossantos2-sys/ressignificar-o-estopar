@@ -1,5 +1,6 @@
 (() => {
-  const isEnglish=document.documentElement.lang==="en";\n  const tr=(pt,en)=>isEnglish?en:pt;\n  const $=s=>document.querySelector(s), canvas=$("[data-replay-canvas]");
+  const isEnglish=document.documentElement.lang==="en";
+  const tr=(pt,en)=>isEnglish?en:pt;\n  const $=s=>document.querySelector(s), canvas=$("[data-replay-canvas]");
   if(!canvas)return;
   const ctx=canvas.getContext("2d");
   const q=new URLSearchParams(location.search);
