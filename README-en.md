@@ -7,7 +7,6 @@
 An educational website about trading psychology, focused on reframing the stop-loss as a professional risk-management tool rather than a personal failure.
 
 **Website:** https://pablopcdossantos2-sys.github.io/ressignificar-o-estopar/  
-**Repository:** https://github.com/pablopcdossantos2-sys/ressignificar-o-estopar
 
 > **Deployment:** the workflow in `.github/workflows/pages.yml` publishes the files from the `main` branch. See the [GitHub Actions run history](https://github.com/pablopcdossantos2-sys/ressignificar-o-estopar/actions/workflows/pages.yml) to check deployment status.
 
