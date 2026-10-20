@@ -33,7 +33,7 @@
 <label>Why does this stop invalidate my hypothesis?</label><textarea rows="2" data-replay-rationale placeholder="Escreva antes de entrar."></textarea>
 <div class="order-buttons"><button class="btn replay-buy" data-replay-buy>Buy</button><button class="btn replay-sell" data-replay-sell>Sell</button></div>
 <div class="toolbar"><button class="btn secondary small-btn" data-replay-update-stop>Update stop</button><button class="btn secondary small-btn" data-replay-exit>Close position now</button></div>
-<div class="small" data-replay-order-status>Sem posição.</div></div>
+<div class="small" data-replay-order-status>No position.</div></div>
 </div>
 
 <div class="replay-stage">
@@ -66,5 +66,5 @@
 <div class="small" data-presence-message></div>
 </form></dialog>
 
-<section class="article" data-embed-hide><h2>How the engine handles stops and targets</h2><p>Entry occurs at the close of the currently visible candle. On each step, the engine uses the next candle high and low to check the stop and target. Se stop e alvo forem tocados no mesmo candle e os dados não permitirem saber a ordem intrabar, o simulador marca a ocorrência como <strong>ambígua</strong> e, por prudência didática, considera o stop primeiro. For more precise intrabar execution study, import finer-grained data.</p><p>O resultado é expresso principalmente em <strong>pontos</strong> e em <strong>R</strong> com base na distância inicial do stop; isso evita misturar regras contratuais distintas entre WIN, WDO e mercados americanos.</p></section>
+<section class="article" data-embed-hide><h2>How the engine handles stops and targets</h2><p>Entry occurs at the close of the currently visible candle. On each step, the engine uses the next candle high and low to check the stop and target. If the stop and target are both touched in the same candle and the data cannot establish intrabar order, the simulator marks the event as <strong>ambiguous</strong> and, as a conservative educational assumption, treats the stop as first. For more precise intrabar execution study, import finer-grained data.</p><p>Results are shown mainly in <strong>pontos</strong> e em <strong>R</strong> based on the initial stop distance; this avoids mixing contract rules across WIN, WDO, and US markets.</p></section>
 </div></main><footer class="replay-full-header"><div class="wrap">Educational simulator. It does not send orders and is not financial advice.</div></footer><script src="assets/app.js"></script><script src="assets/replay.js"></script></body></html>
