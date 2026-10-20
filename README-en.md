@@ -6,10 +6,10 @@
 
 An educational website about trading psychology, focused on reframing the stop-loss as a professional risk-management tool rather than a personal failure.
 
-**Planned website address (after GitHub Pages is enabled):** https://pablopcdossantos2-sys.github.io/ressignificar-o-estopar/  
+**Website:** https://pablopcdossantos2-sys.github.io/ressignificar-o-estopar/  
 **Repository:** https://github.com/pablopcdossantos2-sys/ressignificar-o-estopar
 
-> **Deployment note:** the deployment workflow is present in the repository, but the public website depends on enabling GitHub Actions under **Settings → Pages** and completing a successful workflow run. Until publication is confirmed, the website addresses below represent the planned paths.
+> **Deployment:** the workflow in `.github/workflows/pages.yml` publishes the files from the `main` branch. See the [GitHub Actions run history](https://github.com/pablopcdossantos2-sys/ressignificar-o-estopar/actions/workflows/pages.yml) to check deployment status.
 
 ## Purpose
 

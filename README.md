@@ -6,10 +6,10 @@
 
 Web site educacional sobre psicologia do trading, com foco em ressignificar o stop como uma ferramenta profissional de gestão de risco — e não como fracasso pessoal.
 
-**Endereço previsto do site (após habilitar o GitHub Pages):** https://pablopcdossantos2-sys.github.io/ressignificar-o-estopar/  
+**Site:** https://pablopcdossantos2-sys.github.io/ressignificar-o-estopar/  
 **Repositório:** https://github.com/pablopcdossantos2-sys/ressignificar-o-estopar
 
-> **Nota de publicação:** o workflow de implantação está no repositório, mas o site público depende da habilitação de GitHub Actions em **Settings → Pages** e de uma execução bem-sucedida. Até a confirmação da publicação, os endereços do site abaixo representam os caminhos planejados.
+> **Publicação:** o workflow em `.github/workflows/pages.yml` publica os arquivos da branch `main`. Consulte o [histórico do GitHub Actions](https://github.com/pablopcdossantos2-sys/ressignificar-o-estopar/actions/workflows/pages.yml) para acompanhar o status das implantações.
 
 ## Objetivo
 
