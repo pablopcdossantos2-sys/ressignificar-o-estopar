@@ -7,7 +7,6 @@
 Web site educacional sobre psicologia do trading, com foco em ressignificar o stop como uma ferramenta profissional de gestão de risco — e não como fracasso pessoal.
 
 **Site:** https://pablopcdossantos2-sys.github.io/ressignificar-o-estopar/  
-**Repositório:** https://github.com/pablopcdossantos2-sys/ressignificar-o-estopar
 
 > **Publicação:** o workflow em `.github/workflows/pages.yml` publica os arquivos da branch `main`. Consulte o [histórico do GitHub Actions](https://github.com/pablopcdossantos2-sys/ressignificar-o-estopar/actions/workflows/pages.yml) para acompanhar o status das implantações.
 
@@ -80,7 +79,3 @@ Ressignificar o Estopar é uma aplicação web educacional e interativa, desenvo
 O desenvolvimento contou com a utilização de ferramentas de inteligência artificial generativa como recurso auxiliar, mantendo-se sob responsabilidade do autor a concepção, implementação, integração e verificação do projeto.
 
 Currículo Lattes: [http://lattes.cnpq.br/9500873674712528](http://lattes.cnpq.br/9500873674712528)
-
-## Licença
-
-Consulte o arquivo LICENSE na raiz do repositório para os termos de uso e redistribuição.
