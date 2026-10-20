@@ -12,9 +12,9 @@
   }
   const pagePath=location.pathname;
   const pageFile=pagePath.split("/").pop()||"index.html";
-  const onEnglishPage=/-en\\.html$/i.test(pageFile);
-  const portugueseFile=onEnglishPage?pageFile.replace(/-en\\.html$/i,".html"):pageFile;
-  const englishFile=portugueseFile.replace(/\\.html$/i,"-en.html");
+  const onEnglishPage=/-en\.html$/i.test(pageFile);
+  const portugueseFile=onEnglishPage?pageFile.replace(/-en\.html$/i,".html"):pageFile;
+  const englishFile=portugueseFile.replace(/\.html$/i,"-en.html");
   const savedLanguage=localStorage.getItem("re-language");
   const browserEnglish=/^en(?:-|$)/i.test(navigator.language||"");
   const currentLanguage=onEnglishPage?"en":"pt";
@@ -55,9 +55,9 @@
     const items=[...document.querySelectorAll("[data-search-item]")];
     const status=document.querySelector("[data-search-status]");
     q.addEventListener("input",()=>{
-      const term=q.value.trim().toLocaleLowerCase("pt-BR");let n=0;
-      items.forEach(el=>{const ok=!term||el.innerText.toLocaleLowerCase("pt-BR").includes(term);el.classList.toggle("hidden-by-search",!ok);if(ok)n++});
-      if(status) status.textContent=term?n+" resultado(s) visível(is).":"";
+      const locale=isEnglish?"en-US":"pt-BR";const term=q.value.trim().toLocaleLowerCase(locale);let n=0;
+      items.forEach(el=>{const ok=!term||el.innerText.toLocaleLowerCase(locale).includes(term);el.classList.toggle("hidden-by-search",!ok);if(ok)n++});
+      if(status) status.textContent=term?n+(isEnglish?" result(s) visible.":" resultado(s) visível(is)."):"";
     });
   }
 
@@ -83,7 +83,7 @@
   try{read=JSON.parse(localStorage.getItem("re-read-articles")||"[]")}catch{}
   const renderRead=()=>{
     readButtons.forEach(b=>{const done=read.includes(b.dataset.completeArticle);b.classList.toggle("is-done",done);b.textContent=done?"✓ Lido":"Marcar como lido"});
-    if(progressText) progressText.textContent=`${read.length} de ${readButtons.length} artigos marcados como lidos`;
+    if(progressText) progressText.textContent=isEnglish?`${read.length} of ${readButtons.length} articles marked as read`:`${read.length} de ${readButtons.length} artigos marcados como lidos`;
     if(progressFill) progressFill.style.width=(readButtons.length?read.length/readButtons.length*100:0)+"%";
   };
   readButtons.forEach(b=>b.addEventListener("click",()=>{
@@ -95,12 +95,12 @@
   const ifBtn=document.querySelector("[data-build-ifthen]");
   if(ifBtn) ifBtn.addEventListener("click",()=>{
     const s=document.querySelector("[name=gatilho]").value.trim(),a=document.querySelector("[name=acao]").value.trim();
-    document.querySelector("[data-ifthen-output]").textContent=(s&&a)?`SE ${s}, ENTÃO ${a}.`:"Preencha o gatilho e a ação.";
+    document.querySelector("[data-ifthen-output]").textContent=(s&&a)?isEnglish?`IF ${s}, THEN ${a}.`:`SE ${s}, ENTÃO ${a}.`:tr("Preencha o gatilho e a ação.","Fill in the trigger and action.");
   });
   const reframeBtn=document.querySelector("[data-build-reframe]");
   if(reframeBtn) reframeBtn.addEventListener("click",()=>{
     const t=document.querySelector("[name=pensamento]").value.trim(),e=document.querySelector("[name=evidencia]").value.trim(),a=document.querySelector("[name=alternativa]").value.trim();
-    document.querySelector("[data-reframe-output]").textContent=a?`Pensamento automático: ${t||"—"}\nEvidência relevante: ${e||"—"}\nResposta profissional alternativa: ${a}`:"Escreva uma resposta profissional alternativa.";
+    document.querySelector("[data-reframe-output]").textContent=a?isEnglish?`Automatic thought: ${t||"—"}\nRelevant evidence: ${e||"—"}\nAlternative professional response: ${a}`:`Pensamento automático: ${t||"—"}\nEvidência relevante: ${e||"—"}\nResposta profissional alternativa: ${a}`:tr("Escreva uma resposta profissional alternativa.","Write an alternative professional response.");
   });
 
   const scoreBtn=document.querySelector("[data-process-score]");
@@ -109,15 +109,15 @@
     const answered=fields.filter(f=>f.value!=="");
     const yes=fields.filter(f=>f.value==="1").length;
     const out=document.querySelector("[data-process-output]");
-    if(answered.length!==fields.length){out.textContent="Responda todos os itens antes de calcular.";return}
+    if(answered.length!==fields.length){out.textContent=tr("Responda todos os itens antes de calcular.","Answer every item before calculating.");return}
     const pct=Math.round(yes/fields.length*100);
-    out.textContent=`Aderência ao processo: ${yes}/${fields.length} (${pct}%).\nUse esta pontuação para revisar comportamento, não para julgar seu valor pessoal nem prever o próximo trade.`;
+    out.textContent=isEnglish?`Process adherence: ${yes}/${fields.length} (${pct}%).\nUse this score to review behavior, not to judge your personal worth or predict the next trade.`:`Aderência ao processo: ${yes}/${fields.length} (${pct}%).\nUse esta pontuação para revisar comportamento, não para julgar seu valor pessoal nem prever o próximo trade.`;
   });
 
   const trafficBtn=document.querySelector("[data-traffic-score]");
   if(trafficBtn) trafficBtn.addEventListener("click",()=>{
     const fields=[...document.querySelectorAll("[data-traffic-item]")];
-    if(fields.some(f=>f.value==="")){document.querySelector("[data-traffic-output]").textContent="Responda todos os itens.";return}
+    if(fields.some(f=>f.value==="")){document.querySelector("[data-traffic-output]").textContent=tr("Responda todos os itens.","Answer every item.");return}
     const score=fields.reduce((s,f)=>s+Number(f.value),0);
     const out=document.querySelector("[data-traffic-output]");
     let label,msg,klass;
@@ -131,7 +131,7 @@
   const rageBtn=document.querySelector("[data-rage-score]");
   if(rageBtn) rageBtn.addEventListener("click",()=>{
     const fields=[...document.querySelectorAll("[data-rage-item]")],out=document.querySelector("[data-rage-output]");
-    if(fields.some(f=>f.value==="")){out.textContent="Preencha todos os itens.";return}
+    if(fields.some(f=>f.value==="")){out.textContent=tr("Preencha todos os itens.","Complete every item.");return}
     const score=fields.reduce((s,f)=>s+Number(f.value),0);
     let label,msg;
     if(score<=3){label="BAIXA ESCALADA";msg="Poucos sinais foram marcados. Revise mesmo assim o primeiro gatilho e confirme se as regras permaneceram intactas."}
@@ -147,13 +147,13 @@
           wr=Number(document.querySelector("[data-disposition-win-r]").value),
           lr=Number(document.querySelector("[data-disposition-loss-r]").value),
           out=document.querySelector("[data-disposition-output]");
-    if(!(wt>0&&lt>0&&wr>0&&lr>0)){out.textContent="Preencha todos os valores com números maiores que zero.";return}
+    if(!(wt>0&&lt>0&&wr>0&&lr>0)){out.textContent=tr("Preencha todos os valores com números maiores que zero.","Enter all values as numbers greater than zero.");return}
     const timeRatio=lt/wt, payoff=wr/lr;
     const flags=[];
-    if(timeRatio>=1.5) flags.push("perdedores permanecem abertos muito mais tempo que vencedores");
-    if(payoff<1) flags.push("o ganho médio é menor que a perda média");
-    let msg=flags.length?"Amostra com assimetrias que merecem investigação: "+flags.join("; ")+".":"Nenhuma das duas assimetrias simples usadas por esta ferramenta apareceu de forma forte.";
-    out.textContent=`Razão de duração (perdedor/vencedor): ${timeRatio.toFixed(2)}x.\nPayoff médio (ganho/perda): ${payoff.toFixed(2)}.\n${msg}\nIsso não diagnostica efeito disposição: compare com as regras e a expectativa matemática da sua estratégia.`;
+    if(timeRatio>=1.5) flags.push(tr("perdedores permanecem abertos muito mais tempo que vencedores","losing trades remain open much longer than winning trades"));
+    if(payoff<1) flags.push(tr("o ganho médio é menor que a perda média","the average gain is smaller than the average loss"));
+    let msg=flags.length?"${tr("Amostra com assimetrias que merecem investigação: ","Sample contains asymmetries worth investigating: ")}"+flags.join("; ")+".":tr("Nenhuma das duas assimetrias simples usadas por esta ferramenta apareceu de forma forte.","Neither of the two simple asymmetries used by this tool appeared strongly.");
+    out.textContent=isEnglish?`Duration ratio (loser/winner): ${timeRatio.toFixed(2)}x.\nAverage payoff (gain/loss): ${payoff.toFixed(2)}.\n${msg}\nThis does not diagnose the disposition effect; compare with your strategy rules and mathematical expectancy.`:`Razão de duração (perdedor/vencedor): ${timeRatio.toFixed(2)}x.\nPayoff médio (ganho/perda): ${payoff.toFixed(2)}.\n${msg}\nIsso não diagnostica efeito disposição: compare com as regras e a expectativa matemática da sua estratégia.`;
   });
 
   const ctxMin=document.querySelector("[data-context-minutes]"),
@@ -173,9 +173,9 @@
   const ctxSave=document.querySelector("[data-context-save]"),ctxHist=document.querySelector("[data-context-history]"),ctxClear=document.querySelector("[data-context-clear]");
   if(ctxSave&&ctxHist&&ctxClear){
     const key="re-context-history";
-    const render=()=>{let arr=[];try{arr=JSON.parse(localStorage.getItem(key)||"[]")}catch{}ctxHist.innerHTML=arr.length?arr.map((x,i)=>`<article class="snapshot"><strong>${x.at}</strong><p><b>Agora:</b> ${esc(x.now)}</p><p><b>Mudou:</b> ${esc(x.changed)}</p><p><b>A favor:</b> ${esc(x.favor)}</p><p><b>Contra:</b> ${esc(x.against)}</p><p><b>Zerado:</b> ${esc(x.flat)}</p></article>`).join(""):'<p class="small">Nenhum snapshot salvo.</p>'};
+    const render=()=>{let arr=[];try{arr=JSON.parse(localStorage.getItem(key)||"[]")}catch{}ctxHist.innerHTML=arr.length?arr.map((x,i)=>`<article class="snapshot"><strong>${x.at}</strong><p><b>${tr("Agora","Now")}:</b> ${esc(x.now)}</p><p><b>${tr("Mudou","Changed")}:</b> ${esc(x.changed)}</p><p><b>${tr("A favor","Supporting")}:</b> ${esc(x.favor)}</p><p><b>${tr("Contra","Against")}:</b> ${esc(x.against)}</p><p><b>${tr("Zerado","Flat")}:</b> ${esc(x.flat)}</p></article>`).join(""):'<p class="small">Nenhum snapshot salvo.</p>'};
     const esc=s=>String(s||"—").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-    ctxSave.addEventListener("click",()=>{let arr=[];try{arr=JSON.parse(localStorage.getItem(key)||"[]")}catch{}const v=n=>document.querySelector(`[name=${n}]`)?.value.trim()||"";arr.unshift({at:new Date().toLocaleString("pt-BR"),now:v("ctx_now"),changed:v("ctx_changed"),favor:v("ctx_for"),against:v("ctx_against"),flat:v("ctx_flat")});arr=arr.slice(0,50);localStorage.setItem(key,JSON.stringify(arr));render()});
+    ctxSave.addEventListener("click",()=>{let arr=[];try{arr=JSON.parse(localStorage.getItem(key)||"[]")}catch{}const v=n=>document.querySelector(`[name=${n}]`)?.value.trim()||"";arr.unshift({at:new Date().toLocaleString(isEnglish?"en-US":"pt-BR"),now:v("ctx_now"),changed:v("ctx_changed"),favor:v("ctx_for"),against:v("ctx_against"),flat:v("ctx_flat")});arr=arr.slice(0,50);localStorage.setItem(key,JSON.stringify(arr));render()});
     ctxClear.addEventListener("click",()=>{localStorage.removeItem(key);render()});render();
   }
 

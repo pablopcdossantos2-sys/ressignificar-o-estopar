@@ -1,5 +1,5 @@
 (() => {
-  const $=s=>document.querySelector(s), canvas=$("[data-replay-canvas]");
+  const isEnglish=document.documentElement.lang==="en";\n  const tr=(pt,en)=>isEnglish?en:pt;\n  const $=s=>document.querySelector(s), canvas=$("[data-replay-canvas]");
   if(!canvas)return;
   const ctx=canvas.getContext("2d");
   const q=new URLSearchParams(location.search);
@@ -20,25 +20,25 @@
   const openPresence=(auto=false)=>{
     if(!presenceDialog)return;
     const fact=$("[data-presence-fact]"),story=$("[data-presence-story]"),def=$("[data-presence-defusion]"),rule=$("[data-presence-rule]"),action=$("[data-presence-action]"),flat=$("[data-presence-flat]");
-    [fact,story,def,rule,action].forEach(x=>{if(x)x.value=""});if(flat)flat.checked=false;if(presenceMsg)presenceMsg.textContent=auto?"Checkpoint automático: a posição atingiu aproximadamente -0,5R pelo fechamento.":"";
+    [fact,story,def,rule,action].forEach(x=>{if(x)x.value=""});if(flat)flat.checked=false;if(presenceMsg)presenceMsg.textContent=auto?tr("Checkpoint automático: a posição atingiu aproximadamente -0,5R pelo fechamento.","Automatic checkpoint: the position reached approximately -0.5R at candle close."):"";
     if(typeof presenceDialog.showModal==="function")presenceDialog.showModal();else presenceDialog.setAttribute("open","");
   };
   if(presenceOpen)presenceOpen.addEventListener("click",()=>{stopPlay();openPresence(false)});
   if(presenceSave)presenceSave.addEventListener("click",()=>{
     const fact=$("[data-presence-fact]")?.value.trim(),story=$("[data-presence-story]")?.value.trim(),def=$("[data-presence-defusion]")?.value.trim(),rule=$("[data-presence-rule]")?.value.trim(),action=$("[data-presence-action]")?.value.trim(),flat=$("[data-presence-flat]")?.checked;
-    if(!fact||!rule||!action){if(presenceMsg)presenceMsg.textContent="Preencha pelo menos Fato, Regra e Ação.";return}
-    metrics.presence++;log(`A.G.O.R.A. · Fato: ${fact} · História: ${story||"—"} · Desfusão: ${def||"—"} · Regra: ${rule} · Ação: ${action} · Leitura zerado/P&L oculto: ${flat?"igual":"diferente ou incerta"}`,"ok");
+    if(!fact||!rule||!action){if(presenceMsg)presenceMsg.textContent=tr("Preencha pelo menos Fato, Regra e Ação.","Fill in at least Fact, Rule, and Action.");return}
+    metrics.presence++;log(isEnglish?`A.G.O.R.A. · Fact: ${fact} · Story: ${story||"—"} · Defusion: ${def||"—"} · Rule: ${rule} · Action: ${action} · Flat / P&L hidden reading: ${flat?"same":"different or uncertain"}`:`A.G.O.R.A. · Fato: ${fact} · História: ${story||"—"} · Desfusão: ${def||"—"} · Regra: ${rule} · Ação: ${action} · Leitura zerado/P&L oculto: ${flat?"igual":"diferente ou incerta"}`,"ok");
     updateUI();presenceDialog.close();
   });
 
   const challengeText={
-    free:"Replay livre: leia o contexto, defina o stop antes da entrada e avance sem enxergar candles futuros.",
-    stop:"Desafio: abra uma posição com stop definido e não amplie o risco depois da entrada.",
-    recovery:"Desafio: após um stop, só faça nova entrada se ela existir por mérito próprio — não para voltar ao zero.",
-    disposition:"Desafio: observe se você encerra ganhos por desconforto e prolonga perdas por esperança. Use critérios, não o sinal do P&L.",
-    context:"Desafio: a cada bloco de candles, reconstrua mentalmente a tese atual. O que mudou? O que contraria sua leitura?",
-    fury:"Desafio: perceba o primeiro sinal de escalada (urgência, raiva, frequência, aumento de risco) e interrompa a cadeia.",
-    present:"Desafio: quando a posição ficar desconfortável, pare de operar a reversão imaginada. Separe fato, hipótese e desejo e retorne à regra usando o checkpoint A.G.O.R.A."
+    free:tr("Replay livre: leia o contexto, defina o stop antes da entrada e avance sem enxergar candles futuros.","Free replay: read the context, define the stop before entry, and advance without seeing future candles."),
+    stop:tr("Desafio: abra uma posição com stop definido e não amplie o risco depois da entrada.","Challenge: open a position with a defined stop and do not increase risk after entry."),
+    recovery:tr("Desafio: após um stop, só faça nova entrada se ela existir por mérito próprio — não para voltar ao zero.","Challenge: after a stop, enter again only if the setup stands on its own—not to get back to breakeven."),
+    disposition:tr("Desafio: observe se você encerra ganhos por desconforto e prolonga perdas por esperança. Use critérios, não o sinal do P&L.","Challenge: notice whether you close winners out of discomfort and extend losers out of hope. Use criteria, not the P&L sign."),
+    context:tr("Desafio: a cada bloco de candles, reconstrua mentalmente a tese atual. O que mudou? O que contraria sua leitura?","Challenge: after each candle block, rebuild your current thesis. What changed? What contradicts your view?"),
+    fury:tr("Desafio: perceba o primeiro sinal de escalada (urgência, raiva, frequência, aumento de risco) e interrompa a cadeia.","Challenge: notice the first sign of escalation (urgency, anger, frequency, increased risk) and interrupt the chain."),
+    present:tr("Desafio: quando a posição ficar desconfortável, pare de operar a reversão imaginada. Separe fato, hipótese e desejo e retorne à regra usando o checkpoint A.G.O.R.A.","Challenge: when the position becomes uncomfortable, stop trading the imagined reversal. Separate fact, hypothesis, and desire, then return to the rule using the A.G.O.R.A. checkpoint.")
   };
 
   const dbOpen=()=>new Promise((res,rej)=>{const r=indexedDB.open("ressignificar-market-data",1);r.onupgradeneeded=()=>{if(!r.result.objectStoreNames.contains("datasets"))r.result.createObjectStore("datasets",{keyPath:"asset"})};r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)});
@@ -69,7 +69,7 @@
     const find=(...names)=>hdr.findIndex(h=>names.some(n=>h===norm(n)));
     const io=find("open","abertura"),ih=find("high","maxima","máxima"),il=find("low","minima","mínima"),ic=find("close","fechamento"),iv=find("volume","vol");
     const it=find("time","timestamp","datetime","datahora"),id=find("date","data"),ihour=find("hora","hour");
-    if([io,ih,il,ic].some(i=>i<0)|| (it<0&&id<0))throw new Error("Não reconheci as colunas OHLC/data. Veja o tutorial de dados.");
+    if([io,ih,il,ic].some(i=>i<0)|| (it<0&&id<0))throw new Error(tr("Não reconheci as colunas OHLC/data. Veja o tutorial de dados.","Could not identify the OHLC/date columns. See the data guide."));
     const out=[];
     for(const r of rows.slice(1)){
       let ts;if(it>=0)ts=parseTime(r[it]);else ts=parseTime((r[id]||"")+" "+(ihour>=0?r[ihour]||"":""));
@@ -101,7 +101,7 @@
   }
 
   els.imp.addEventListener("click",async()=>{
-    try{const f=els.file.files?.[0];if(!f)throw new Error("Selecione um CSV.");els.status.textContent="Lendo arquivo…";const parsed=parseCSV(await f.text());await dbPut({asset:els.asset.value,bars:parsed,importedAt:Date.now(),filename:f.name});if(dataChannel)dataChannel.postMessage({type:"dataset-updated",asset:els.asset.value});els.status.textContent="Importação concluída.";await refreshDataset()}catch(e){els.status.textContent="Erro: "+e.message}
+    try{const f=els.file.files?.[0];if(!f)throw new Error("Selecione um CSV.");els.status.textContent="Lendo arquivo…";const parsed=parseCSV(await f.text());await dbPut({asset:els.asset.value,bars:parsed,importedAt:Date.now(),filename:f.name});if(dataChannel)dataChannel.postMessage({type:"dataset-updated",asset:els.asset.value});els.status.textContent=tr("Importação concluída.","Import complete.");await refreshDataset()}catch(e){els.status.textContent="Erro: "+e.message}
   });
   els.del.addEventListener("click",async()=>{await dbDelete(els.asset.value);raw=[];bars=[];render();await refreshDataset()});
   els.asset.addEventListener("change",refreshDataset);
@@ -112,7 +112,7 @@
     const tf=Number(els.tf.value),base=baseMinutes(raw);
     if(base&&base>tf){els.session.textContent=`A base parece ter ${base} min. Não é possível reconstruir candles de ${tf} min a partir de granularidade maior.`;return}
     let rs=resample(raw,tf).filter(x=>dateKey(x.t)===els.date.value);
-    if(rs.length<25){els.session.textContent="Sessão curta demais após o resampling.";return}
+    if(rs.length<25){els.session.textContent=tr("Sessão curta demais após o resampling.","Session is too short after resampling.");return}
     bars=rs;metrics={trades:0,stops:0,expansions:0,presence:0,realized:0};position=null;
     const ch=els.challenge.value;startCursor=ch==="free"?Math.min(30,bars.length-1):Math.max(20,Math.min(bars.length-20,20+Math.floor(Math.random()*Math.max(1,bars.length-40))));
     cursor=startCursor;els.challengeText.textContent=challengeText[ch];els.session.textContent=`${bars.length} candles de ${tf} min · replay inicia no candle ${cursor+1}.`;els.log.innerHTML="";updateUI();draw();
@@ -122,30 +122,30 @@
 
   function enter(side){
     if(!bars.length)return;const b=bars[cursor],stop=Number(els.stop.value),target=els.target.value===""?null:Number(els.target.value),why=els.why.value.trim();
-    if(!Number.isFinite(stop)){log("Entrada recusada: defina o stop antes de entrar.","bad");return}
-    if(!why){log("Entrada recusada: descreva por que o stop invalida a hipótese.","bad");return}
-    if(side==="long"&&stop>=b.c){log("Compra recusada: o stop precisa estar abaixo da entrada.","bad");return}
-    if(side==="short"&&stop<=b.c){log("Venda recusada: o stop precisa estar acima da entrada.","bad");return}
+    if(!Number.isFinite(stop)){log(tr("Entrada recusada: defina o stop antes de entrar.","Entry rejected: define the stop before entering."),"bad");return}
+    if(!why){log(tr("Entrada recusada: descreva por que o stop invalida a hipótese.","Entry rejected: explain why the stop invalidates the hypothesis."),"bad");return}
+    if(side==="long"&&stop>=b.c){log(tr("Compra recusada: o stop precisa estar abaixo da entrada.","Buy rejected: the stop must be below entry."),"bad");return}
+    if(side==="short"&&stop<=b.c){log(tr("Venda recusada: o stop precisa estar acima da entrada.","Sell rejected: the stop must be above entry."),"bad");return}
     if(target!=null&&!Number.isFinite(target))return;
     if(side==="long"&&target!=null&&target<=b.c){log("Na compra, o alvo deve estar acima da entrada.","bad");return}
     if(side==="short"&&target!=null&&target>=b.c){log("Na venda, o alvo deve estar abaixo da entrada.","bad");return}
-    if(position){log("Já existe uma posição aberta.","bad");return}
+    if(position){log(tr("Já existe uma posição aberta.","A position is already open."),"bad");return}
     position={side,entry:b.c,stop,target,initialStop:stop,risk:Math.abs(b.c-stop),why,enteredAt:b.t,presenceTriggered:false};metrics.trades++;
     log(`${side==="long"?"COMPRA":"VENDA"} @ ${fmt(b.c)} · stop ${fmt(stop)}${target!=null?" · alvo "+fmt(target):""}`,"ok");updateUI();draw();
   }
   els.buy.addEventListener("click",()=>enter("long"));els.sell.addEventListener("click",()=>enter("short"));
   els.update.addEventListener("click",()=>{
-    if(!position){log("Sem posição para atualizar.","bad");return}
-    const s=Number(els.stop.value);if(!Number.isFinite(s)){log("Stop inválido.","bad");return}
+    if(!position){log(tr("Sem posição para atualizar.","No position to update."),"bad");return}
+    const s=Number(els.stop.value);if(!Number.isFinite(s)){log(tr("Stop inválido.","Invalid stop."),"bad");return}
     const old=position.stop;const expanding=position.side==="long"?s<old:s>old;
     if(expanding){metrics.expansions++;log(`⚠ Stop ampliado de ${fmt(old)} para ${fmt(s)}. Violação registrada como aumento de risco.`,"warn")}else log(`Stop atualizado de ${fmt(old)} para ${fmt(s)}.`,"ok");
     position.stop=s;updateUI();draw();
   });
-  els.exit.addEventListener("click",()=>{if(!position)return;closePosition(bars[cursor].c,"Saída manual",false)});
+  els.exit.addEventListener("click",()=>{if(!position)return;closePosition(bars[cursor].c,tr("Saída manual","Manual exit"),false)});
 
   function closePosition(px,reason,wasStop,amb=false){
     const p=position;if(!p)return;const points=(px-p.entry)*(p.side==="long"?1:-1);metrics.realized+=points;if(wasStop)metrics.stops++;
-    log(`${reason}${amb?" (candle ambíguo: stop e alvo tocaram)":""} @ ${fmt(px)} · resultado ${points>=0?"+":""}${fmt(points)} pts · ${p.risk?fmt(points/p.risk)+"R":""}`,points>=0?"ok":"bad");position=null;updateUI();draw();
+    log(`${reason}${amb?tr(" (candle ambíguo: stop e alvo tocaram)"," (ambiguous candle: stop and target were both touched)"):""} @ ${fmt(px)} · resultado ${points>=0?"+":""}${fmt(points)} pts · ${p.risk?fmt(points/p.risk)+"R":""}`,points>=0?"ok":"bad");position=null;updateUI();draw();
   }
   function processBar(b){
     if(!position)return;const p=position;
@@ -166,7 +166,7 @@
   }
   els.step.addEventListener("click",step);
   function stopPlay(){if(timer)clearInterval(timer);timer=null;els.play.textContent="▶ Reproduzir"}
-  els.play.addEventListener("click",()=>{if(timer){stopPlay();return}els.play.textContent="⏸ Pausar";timer=setInterval(step,Number(els.speed.value))});
+  els.play.addEventListener("click",()=>{if(timer){stopPlay();return}els.play.textContent=tr("⏸ Pausar","⏸ Pause");timer=setInterval(step,Number(els.speed.value))});
   els.speed.addEventListener("change",()=>{if(timer){stopPlay();els.play.click()}});
   els.back.addEventListener("click",()=>{stopPlay();cursor=startCursor;position=null;metrics={trades:0,stops:0,expansions:0,realized:0};els.log.innerHTML="";updateUI();draw()});
 
@@ -185,7 +185,7 @@
     const w=canvas.clientWidth||900,h=canvas.clientHeight||540;ctx.clearRect(0,0,w,h);
     const styles=getComputedStyle(document.documentElement),bg=styles.getPropertyValue("--surface").trim()||"#fff",line=styles.getPropertyValue("--line").trim()||"#ddd",text=styles.getPropertyValue("--muted").trim()||"#666",up=styles.getPropertyValue("--ok").trim()||"#27845b",down=styles.getPropertyValue("--danger").trim()||"#b54848",accent=styles.getPropertyValue("--accent").trim()||"#315f4a";
     ctx.fillStyle=bg;ctx.fillRect(0,0,w,h);
-    if(!bars.length){ctx.fillStyle=text;ctx.font="15px sans-serif";ctx.fillText("Importe dados históricos e carregue uma sessão.",24,40);return}
+    if(!bars.length){ctx.fillStyle=text;ctx.font="15px sans-serif";ctx.fillText(tr("Importe dados históricos e carregue uma sessão.","Import historical data and load a session."),24,40);return}
     const count=Math.min(90,cursor+1),from=Math.max(0,cursor-count+1),view=bars.slice(from,cursor+1),pad={l:12,r:82,t:18,b:30};
     let lo=Math.min(...view.map(b=>b.l)),hi=Math.max(...view.map(b=>b.h));if(position){lo=Math.min(lo,position.stop,position.target??Infinity);hi=Math.max(hi,position.stop,position.target??-Infinity)}
     const range=hi-lo||1;lo-=range*.05;hi+=range*.05;const ph=h-pad.t-pad.b,pw=w-pad.l-pad.r;const y=p=>pad.t+(hi-p)/(hi-lo)*ph,x=i=>pad.l+(i+.5)*pw/view.length,cw=Math.max(2,pw/view.length*.58);
