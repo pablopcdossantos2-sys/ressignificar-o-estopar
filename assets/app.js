@@ -12,6 +12,7 @@
   }
   const pagePath=location.pathname;
   const pageFile=pagePath.split("/").pop()||"index.html";
+  const pageDir=pagePath.endsWith("/")?pagePath:pagePath.slice(0,pagePath.lastIndexOf("/")+1);
   const onEnglishPage=/-en\.html$/i.test(pageFile);
   const portugueseFile=onEnglishPage?pageFile.replace(/-en\.html$/i,".html"):pageFile;
   const englishFile=portugueseFile.replace(/\.html$/i,"-en.html");
@@ -21,7 +22,7 @@
   const wantedLanguage=savedLanguage||(!onEnglishPage&&browserEnglish?"en":currentLanguage);
   const wantedFile=wantedLanguage==="en"?englishFile:portugueseFile;
   if(wantedLanguage!==currentLanguage&&wantedFile!==pageFile){
-    location.replace(pagePath.slice(0,pagePath.length-pageFile.length)+wantedFile+location.search+location.hash);
+    location.replace(pageDir+wantedFile+location.search+location.hash);
     return;
   }
   document.querySelectorAll("[data-language-select]").forEach(select=>{
@@ -30,7 +31,7 @@
       const next=select.value==="en"?"en":"pt";
       localStorage.setItem("re-language",next);
       const target=next==="en"?englishFile:portugueseFile;
-      location.href=pagePath.slice(0,pagePath.length-pageFile.length)+target+location.search+location.hash;
+      location.href=pageDir+target+location.search+location.hash;
     });
   });
   const saved=localStorage.getItem("re-theme");
