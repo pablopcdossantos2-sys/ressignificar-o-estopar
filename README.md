@@ -14,7 +14,7 @@ Web site educacional sobre psicologia do trading, com foco em ressignificar o st
 
 ## Objetivo
 
-Ajudar traders a executar stops e seguir planos operacionais mesmo diante de desconforto, frustração, esperança de reversão ou desejo de recuperar perdas. O projeto reúne artigos, exercícios, simulações e ferramentas de auto-observação baseados em conceitos de psicologia da decisão, finanças comportamentais e abordagens como TCC e ACT.
+Ajudar traders a executar stops e seguir planos operacionais mesmo diante de desconforto, frustração, esperança de reversão ou desejo de recuperar perdas. O projeto reúne artigos, exercícios, simulações e ferramentas de auto-observação baseados em conceitos de psicologia da decisão, finanças comportamentais e abordagens como TCC e ACT. Também inclui um simulador quantitativo para explorar a relação entre risco/retorno, taxa de acerto, custos operacionais e risco de ficar abaixo da margem exigida.
 
 O conteúdo é educativo: evidências provenientes de psicologia clínica, esporte ou estudos gerais de decisão não são tratadas como prova automática de eficácia em trading.
 
@@ -28,7 +28,8 @@ O conteúdo é educativo: evidências provenientes de psicologia clínica, espor
 6. **[Trilha prática](https://pablopcdossantos2-sys.github.io/ressignificar-o-estopar/trilha.html)** — programa de 14 sessões para treino e revisão.
 7. **[Ferramentas](https://pablopcdossantos2-sys.github.io/ressignificar-o-estopar/ferramentas.html)** — exercícios interativos de apoio à prática.
 8. **[Dados históricos](https://pablopcdossantos2-sys.github.io/ressignificar-o-estopar/dados.html)** — orientações para importar candles e compreender limites de dados/licenciamento.
-9. **[Bibliografia comentada](https://pablopcdossantos2-sys.github.io/ressignificar-o-estopar/referencias.html)** — referências para consulta e aprofundamento.
+9. **[Simulador Risco/Retorno × Taxa de Acerto](https://pablopcdossantos2-sys.github.io/ressignificar-o-estopar/risco-retorno.html)** — tabela por taxa de acerto, expectativa, custos, Monte Carlo, drawdown e risco de quebra.  
+10. **[Bibliografia comentada](https://pablopcdossantos2-sys.github.io/ressignificar-o-estopar/referencias.html)** — referências para consulta e aprofundamento.
 
 ## Estrutura do projeto
 
@@ -40,7 +41,7 @@ O conteúdo é educativo: evidências provenientes de psicologia clínica, espor
 - **trilha.html** — trilha prática de 14 sessões;
 - **ferramentas.html** — exercícios interativos;
 - **laboratorio.html** — laboratório comportamental;
-- **referencias.html** — bibliografia comentada;
+- **risco-retorno.html** — simulador de razão risco/retorno, taxa de acerto, expectativa e risco de quebra;\n- **referencias.html** — bibliografia comentada;
 - **assets/styles.css** — identidade visual e responsividade;
 - **assets/app.js** — tema, busca, progresso e ferramentas interativas;
 - **assets/course.js** — quizzes, simulações e progresso do curso;

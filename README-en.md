@@ -14,7 +14,7 @@ An educational website about trading psychology, focused on reframing the stop-l
 
 ## Purpose
 
-Help traders follow stop-loss rules and trading plans despite discomfort, frustration, hopes of a reversal, or the urge to recover losses. The project brings together articles, exercises, simulations, and self-observation tools based on decision psychology, behavioral finance, and approaches such as cognitive behavioral therapy (CBT) and acceptance and commitment therapy (ACT).
+Help traders follow stop-loss rules and trading plans despite discomfort, frustration, hopes of a reversal, or the urge to recover losses. The project brings together articles, exercises, simulations, and self-observation tools based on decision psychology, behavioral finance, and approaches such as cognitive behavioral therapy (CBT) and acceptance and commitment therapy (ACT). It also includes a quantitative simulator for exploring risk/reward, win rate, trading costs, and the risk of falling below required margin.
 
 The content is educational: evidence from clinical psychology, sports, or general decision-making studies is not treated as automatic proof of effectiveness in trading.
 
@@ -28,7 +28,8 @@ The content is educational: evidence from clinical psychology, sports, or genera
 6. **[Practice pathway](https://pablopcdossantos2-sys.github.io/ressignificar-o-estopar/trilha-en.html)** — a 14-session program for practice and review.
 7. **[Tools](https://pablopcdossantos2-sys.github.io/ressignificar-o-estopar/ferramentas-en.html)** — interactive exercises to support practice.
 8. **[Historical data](https://pablopcdossantos2-sys.github.io/ressignificar-o-estopar/dados-en.html)** — guidance on importing candles and understanding data and licensing limits.
-9. **[Annotated bibliography](https://pablopcdossantos2-sys.github.io/ressignificar-o-estopar/referencias-en.html)** — references for further reading.
+9. **[Risk/Reward × Win Rate simulator](https://pablopcdossantos2-sys.github.io/ressignificar-o-estopar/risco-retorno-en.html)** — win-rate matrix, expectancy, costs, Monte Carlo, drawdown, and account-ruin risk.  
+10. **[Annotated bibliography](https://pablopcdossantos2-sys.github.io/ressignificar-o-estopar/referencias-en.html)** — references for further reading.
 
 ## Project structure
 
@@ -40,7 +41,7 @@ The content is educational: evidence from clinical psychology, sports, or genera
 - **trilha.html** — 14-session practice pathway;
 - **ferramentas.html** — interactive exercises;
 - **laboratorio.html** — behavioral lab;
-- **referencias.html** — annotated bibliography;
+- **risco-retorno.html** — risk/reward, win-rate, expectancy, and margin-risk simulator;\n- **referencias.html** — annotated bibliography;
 - **assets/styles.css** — visual design and responsive layout;
 - **assets/app.js** — theme, search, progress, and interactive tools;
 - **assets/course.js** — quizzes, simulations, and course progress;
