@@ -30,6 +30,7 @@ jobs:
           node --check assets/app.js
           node --check assets/course.js
           node --check assets/replay.js
+          node --check assets/risk-return.js
 
 
       - name: Validate HTML pages and local links
