@@ -140,9 +140,9 @@ function renderDetail(){
     '<div><small>'+tr("Acerto de equilíbrio","Breakeven win rate")+'</small><b>'+((sc.win+sc.loss)>0?pct(sc.loss/(sc.win+sc.loss)):"—")+'</b></div>'+
     '<div><small>'+tr("Probabilidade de quebra","Ruin probability")+'</small><b>'+pct(st.pRuin)+'</b></div>'+
     '<div><small>'+tr("Capital recomendado (95%)","Suggested capital (95%)")+'</small><b>'+money(required)+'</b></div>'+
-    '<div><small>'+tr("Drawdown máx. (mediana / 95%)","Max drawdown (median / 95th pct.)")+'</small><b>'+compact(mddMed)+" / "+compact(mdd95)+"</b></div>'+
-    '<div><small>'+tr("Maior sequência de perdas (mediana / 95%)","Longest losing streak (median / 95th pct.)")+'</small><b>'+q(st.st,.5)+" / "+q(st.st,.95)+"</b></div>'+
-    '<div><small>'+tr("Capital final (5% / mediana / 95%)","Final capital (5th pct. / median / 95th pct.)")+'</small><b style="font-size:.9rem">'+compact(q(st.fin,.05))+" / "+compact(q(st.fin,.5))+" / "+compact(q(st.fin,.95))+"</b></div>";
+    '<div><small>'+tr("Drawdown máx. (mediana / 95%)","Max drawdown (median / 95th pct.)")+'</small><b>'+compact(mddMed)+' / '+compact(mdd95)+'</b></div>'+
+    '<div><small>'+tr("Maior sequência de perdas (mediana / 95%)","Longest losing streak (median / 95th pct.)")+'</small><b>'+q(st.st,.5)+' / '+q(st.st,.95)+'</b></div>'+
+    '<div><small>'+tr("Capital final (5% / mediana / 95%)","Final capital (5th pct. / median / 95th pct.)")+'</small><b style="font-size:.9rem">'+compact(q(st.fin,.05))+' / '+compact(q(st.fin,.5))+' / '+compact(q(st.fin,.95))+'</b></div>';
   const main=sim(w,sc,rng(seed),true,true),alts=[];
   for(let k=0;k<40;k++)alts.push(sim(w,sc,rng(seed*7919+k+1),true,true));
   const exp=new Float64Array(P.trades+1);
