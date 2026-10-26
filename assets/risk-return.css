@@ -28,7 +28,7 @@
 .rr-app .rr-sum small{display:block;color:var(--rr-muted);font-size:.75rem}
 .rr-app .rr-sum b{font-size:1.05rem;overflow-wrap:anywhere}
 .rr-app .rr-tablewrap{overflow-x:auto;padding:8px 4px 10px}
-.rr-app table.rr{border-collapse:separate;border-spacing:3px;min-width:640px;width:100%}
+.rr-app table.rr{border-collapse:separate;border-spacing:3px;min-width:640px;width:max-content;margin-inline:auto}
 .rr-app table.rr th{font-size:.82rem;font-weight:700;padding:4px 6px;text-align:center;white-space:nowrap}
 .rr-app table.rr th.rowh{text-align:right;padding-right:10px}
 .rr-app table.rr th.corner{font-size:.7rem;color:var(--rr-muted);font-weight:600;text-align:right}
@@ -70,3 +70,4 @@
 .rr-app .rr-article h2{font-size:1.6rem;margin:0 0 14px}
 .rr-app .rr-article p em{color:var(--rr-muted)}
 @media(max-width:600px){.rr-app{padding:14px 12px 36px}.rr-app .rr-top{padding:22px 16px}.rr-app .rr-card{padding:15px}.rr-app canvas#chart{height:300px}.rr-app .rr-radios{gap:10px}}
+@media(max-width:700px){.rr-app table.rr{margin-left:0;margin-right:0}}
