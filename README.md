@@ -35,7 +35,7 @@ O conteúdo é educativo: evidências provenientes de psicologia clínica, espor
 
 - **index.html** — página inicial;
 - **curso.html** — curso interativo de oito módulos;
-- **simulador.html** — replay histórico e motor de ordens simuladas;
+- **simulador.html** — replay histórico e motor de ordens simuladas;\n- **risco-retorno.html / risco-retorno-en.html** — simulador bilíngue de risco/retorno, taxa de acerto, expectativa e risco de quebra;
 - **dados.html** — tutorial de importação de históricos;
 - **manual.html** — manual de artigos e acompanhamento local de leitura;
 - **trilha.html** — trilha prática de 14 sessões;
@@ -45,7 +45,7 @@ O conteúdo é educativo: evidências provenientes de psicologia clínica, espor
 - **assets/styles.css** — identidade visual e responsividade;
 - **assets/app.js** — tema, busca, progresso e ferramentas interativas;
 - **assets/course.js** — quizzes, simulações e progresso do curso;
-- **assets/replay.js** — importação CSV, armazenamento local, agregação de candles, desenho do gráfico e execução simulada.
+- **assets/replay.js** — importação CSV, armazenamento local, agregação de candles, desenho do gráfico e execução simulada;\n- **assets/risk-return.css / assets/risk-return.js** — estilos isolados, tabela de expectativa e motor de simulação Monte Carlo da nova ferramenta.
 
 ## Curso e princípios pedagógicos
 

@@ -35,7 +35,7 @@ The content is educational: evidence from clinical psychology, sports, or genera
 
 - **index.html** — home page;
 - **curso.html** — interactive eight-module course;
-- **simulador.html** — historical replay and simulated-order engine;
+- **simulador.html / simulador-en.html** — historical replay and simulated-order engine;\n- **risco-retorno.html / risco-retorno-en.html** — bilingual risk/reward, win-rate, expectancy, and account-ruin simulator;
 - **dados.html** — historical data import guide;
 - **manual.html** — article manual and locally stored reading progress;
 - **trilha.html** — 14-session practice pathway;
@@ -45,7 +45,7 @@ The content is educational: evidence from clinical psychology, sports, or genera
 - **assets/styles.css** — visual design and responsive layout;
 - **assets/app.js** — theme, search, progress, and interactive tools;
 - **assets/course.js** — quizzes, simulations, and course progress;
-- **assets/replay.js** — CSV import, local storage, candle aggregation, chart rendering, and simulated order execution.
+- **assets/replay.js** — CSV import, local storage, candle aggregation, chart rendering, and simulated order execution;\n- **assets/risk-return.css / assets/risk-return.js** — isolated styles, expectancy matrix, and the new tool’s Monte Carlo simulation engine.
 
 ## Course and educational principles
 
